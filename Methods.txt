@@ -1,0 +1,39 @@
+Methods or function or behaviours or operations
+--defined as
+[visibility][modifiers]<returnType><identifiers>([<srg_list>]);
+where
+visibility = public ,private,protected, internal, protected internal
+		-default visibility is private
+modifiers = static, virtual, override, abstract, new
+returnType = name of the .NET type
+Identifier = name of the function
+arg_list = [ref|out|params]<data type><argname>[=<initial value>],...n
+
+Argument into the function can be passed as
+1.call by value
+2.call By reference
+	-use the "ref" keyword in the calling and called places
+	-ref requires the actual argument to be initialized
+	-the actual value being passed is known.
+	-the called function may or maynot change the value.
+3."out" parameters
+	- use the out keyword in the calling and called locations.
+	-"out" does not require the actul argument to be initialized.
+	-the actual value being passed is not known or ignored by the called function.
+	-a place holder argument is passed to the called function,
+	-the called function has to assign or initialize the argument compulsorily.
+	-useful when you want the function to return multiple values
+4. "params" parameter
+	-allows variable number of arguments to be passed to the called function.
+	-also called "varargs"
+	-only one params parameter is allowed in an argument list.
+	-the params parameter should be the last argument in the parameter list.
+5.Optional arguments
+	-used when all the arguments in the list need not be passed
+	-some of the arguments can be skipped or default values token
+	-optional arguents requires a value to be assigned to the parameter
+	-all parameters after optional parameter should be optional.
+6.Named parameters
+	-name the parameter and assign a value int the calling function
+	-(a:10,b:20) instead od(10,20)
+	-pass argument in any order(b:20,a:10)

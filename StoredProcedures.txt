@@ -1,0 +1,95 @@
+CREATE PROCEDURE sp_GetAllProducts 
+( 
+    @search VARCHAR(50)
+) AS BEGIN 
+
+    IF @search IS NULL OR @search ='' 
+    BEGIN 
+        SELECT ProductId, ProductName, UnitPrice, UnitsInStock, Discontinued, CategoryId
+        FROM Products 
+    END 
+    ELSE 
+    BEGIN
+        SELECT ProductId, ProductName, UnitPrice, UnitsInStock, Discontinued, CategoryId
+        FROM Products 
+        WHERE ProductName LIKE '%' + @search + '%'
+    END
+END  -- of procedure sp_GetAllProducts 
+
+
+
+CREATE PROCEDURE sp_GetProductDetails 
+( 
+    @productId INT
+) AS BEGIN 
+
+    IF (@productId IS NOT NULL OR @productId > 0 ) 
+        AND EXISTS(SELECT ProductId FROM Products Where ProductId=@productId)
+    BEGIN 
+        SELECT  ProductId, ProductName, UnitPrice, UnitsInStock, Discontinued, CategoryId
+        FROM Products 
+        WHERE ProductID=@productId
+    END
+    ELSE 
+    BEGIN 
+        Raiserror('I dont know what is happening', 18, 1) -- message, severity level, state --> GOOGLE
+    END 
+END
+
+
+
+
+CREATE PROCEDURE sp_CreateProduct 
+(
+    @productName varchar(100), 
+    @unitPrice money, 
+    @unitsInStock smallint, 
+    @discontinued bit, 
+    @categoryId int
+) AS BEGIN
+    IF(NOT EXISTS(SELECT ProductName from Products WHERE ProductName=@productName)) 
+    BEGIN
+        INSERT INTO Products (ProductName, UnitPrice, UnitsInStock, Discontinued, CategoryID) 
+        VALUES(@productName, @unitPrice, @unitsInStock, @discontinued, @categoryId) 
+    END 
+    ELSE 
+    BEGIN
+        Raiserror('This product already exists.', 18, 1) 
+    END
+END
+
+
+
+
+CREATE PROCEDURE sp_UpdateProduct 
+(
+    @productId INT,
+    @productName varchar(100), 
+    @unitPrice money, 
+    @unitsInStock smallint, 
+    @discontinued bit, 
+    @categoryId int
+) AS BEGIN
+
+    IF (NOT EXISTS(SELECT CategoryID FROM Categories WHERE CategoryID=@categoryId)) 
+    BEGIN 
+        Raiserror('Specified category does not exist.', 18, 1)
+        RETURN
+    END
+    IF(EXISTS(SELECT ProductId from Products WHERE ProductId=@productId)) 
+    BEGIN
+        UPDATE Products 
+        SET ProductName = @productName, 
+        UnitPrice = @unitPrice, 
+        UnitsInStock = @unitsInStock, 
+        Discontinued = @discontinued, 
+        CategoryID =  @categoryId
+        WHERE ProductID=@productId
+    END 
+    ELSE 
+    BEGIN
+        Raiserror('This product does not exist.', 18, 1) 
+    END
+END
+
+

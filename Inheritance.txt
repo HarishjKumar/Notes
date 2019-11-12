@@ -1,0 +1,77 @@
+Inheritance
+-- Generalization/Specialization
+-- Hierarchy
+-- Reuse existing code and refine the behaviour in the child
+-- All non-private members are visible to the child classes.
+-- By default, the base class object is created before the child class object is created.
+-- the base class's default parameterless constructor is invoked while creating child.
+-- they can be changed to invoke any other constructor of the base class.
+-- a child class object can always be assigned to a base class pointer.
+-- The child class contains an implicit pointer to the base class called "base"
+-- The base keyword refers to the immidiate parent
+-- only single and multi-level inheritance is supported in C#
+-- to inherit use the ":" operator
+
+Sealed
+--  when used on classes, prevents inheritance of that class
+-- when used on methods, prevents overriding of the method
+
+new 
+-- used on methods and properties, hides the base implementation and provides a new implementation
+
+abstract
+-- when used on classes, forces inheritance.
+	-- a class can contain zero or more abstract methods
+	-- there may be fully implemented methods
+	-- can contain data members, properties, constructors, destructors, events
+	-- cannot be instantiated directly.
+	-- some implementation are deferred to the child class
+-- when used on methods, forces overriding of the method
+	-- it is inimplemented method which provides only the declaration'	
+	-- abstract methods should be declared inside abstract classses.
+	-- these methods should be implemented by the derived classes.
+
+OCP --> Open Close Principle -> A class is OPEN for extension,
+					but closed for modification
+
+LSP --> Liskov substitution Principle -> A child class object should be replaceable with a base class object, 		functionality should not differ.
+
+
+Interfaces
+-- Hide the entire sub-system behind implementation
+-- Restrict the user behaviour
+-- a pure abstract type, which contains method, property and event declarations.
+-- No definition provided in the interface
+-- Interface cannot be instantiated derectly.
+-- Interfae cannot contain fields, constructors, detructors
+-- Interfaces are created using the "interface" keyword
+-- all interface members are implicitly public and cannot define visibility
+-- interface can inherit other interfaces
+-- a class can implement multiple interfaces [Multiple inheritance]
+-- in .NET interfaces are prefixed with "I" Eg: IDisposable
+
+
+
+Method Table -- part of the object representation
+VTABLE -- Virtual Table
+-- table maintained by the CLR
+-- resolve the object under scope.
+
+Static 
+-- shared resources
+-- class, method, field, property, constructor can be as static
+-- Static class
+	-- cannot be instantiated
+	-- contain static members only
+	-- cannot inherit 
+-- Static constructor
+	- is invoked by the CLR once the class is loaded.
+	- It is called just before invoking the first static method or just before the first object for the class is 		created
+	- initialize the static members
+	- initialize the program environment.
+	- does not take arguments and cannot be overloaded.
+-- Static Field 
+	- holds data which is shared across instances
+-- Static Methods
+	- also are shared across instances
+	- can access any static field or method, but it cannot access instance fields.

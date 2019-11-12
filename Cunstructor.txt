@@ -1,0 +1,21 @@
+Constructor
+
+--Initializer or special method which is invoked immidiately after creating the object
+--Initialize the fields, to a different value apart from the default value.
+--constructer can be overloaded with multiple parameters
+--usually do not return any value and carry the class name
+--constructors can be declared as private, protected, internal, public, or static
+--a private ctor is used to restrict the object creation from outside the class
+	(singleton Design pattern -> Only one object should ever exist for a class)
+--a static ctor is executed just before the first static method is called or just before the first object for the class is  created. used to initialize static variable
+
+
+Factory Method -- function which accepts inputs and generates an output object if the desired specification are met, else 			return null.
+Design Patterns - Gang of Four GoF patterns - 23 patterns
+
+Create a AccountFactory class in the Process Project. This class is a static class and include a static method called CreateAccount in this class
+
+Create a static method called CreateNew() in the Account class itself.
+
+Create a inner class called Factory in the Account class and add a method called
+CreateNew() in the inner class.

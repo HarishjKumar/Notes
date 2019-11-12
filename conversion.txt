@@ -1,0 +1,29 @@
+Conversion functions
+1. typecasting
+	--converts a value within the family
+	--Widening conversion -> child type can be assigned to the parent type
+	--Narrowing conversion -> parent type is assigned to the child type.
+	--Widening conversion is done implicitly by the compiler
+	--narrowing conversion should be done explicitly by the user, due to data loss
+
+	byte(1)->short(2)->int(4)->long->double->decimal -->Widening
+	decimal->double->long->int->short->(2)->byte(1)  -->Narrowing
+
+	int i=10;short s =10;
+	i=s; Implicit conversion
+	s=(short) i; Explicit conversion
+2. Parse method
+	--all numeric types including Datetime and boolean support the function called parse
+	--Parse function takes a string argument and returns an appropriate type.
+	--TryParse(..), ParseExact(..)
+	--int.Parse(""), double.Parse(""),....
+	eg:
+		string number = "1000";
+		int i= int.Parse(number);
+		int x= int.Parse(Console.ReasLine());
+	--if the parsing fails, the runtime throws an FormatException.
+		int z= int.Parse("100A");
+3.Convert class
+	--provides static conversion methods from any type to other types.
+	Convert.ToInt32(object); //object=integer, float, double, decimal,string
+	Convert.ToInt16,ToInt64,ToSingle,ToDouble,ToDecimal,ToDatetime,ToBoolean,ToString

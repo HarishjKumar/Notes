@@ -1,0 +1,62 @@
+Arrays
+-- reference type, instances of System.Array
+--contiguous memory locations
+--arrays are collection of pointers it does not hold the values it points to the location
+--array elements are always initialized with default values
+	--0 for numeric types, false for boolean, null for strings
+
+int[] arr = new int[10];
+int[] arr = {10,20,30};
+int[] arr = new int[] {10,20,30};
+
+--all arrays in .NET are fixed size arrays.
+
+Program Constructs
+1. if(conddition)
+	//statement
+2. if(conddition)
+	//statement
+   else
+	//statement
+3. if(conddition){//statement(s)} else {//statement(s)}
+4. id(cond) { if(cond) {} else {}} else {}
+5. if(cond) { 
+		//state
+	}
+   else if(cond) {
+	//state
+	}
+6. switch(expression)
+	{
+	case<label>:
+		//statement
+		break;
+	case<label>:
+	case<label>:
+		//state
+		break; || goto case label;
+	default:
+		//state
+		break;
+}
+
+7. do { //state} while(cond); //post check
+8. while(cond) {//state} //pre check
+9. for(init;cond;incr){}
+10. foreach<datatype> <identifier> in <collection>) {}
+11. break;
+12. continue;
+14. return
+
+continue while(cond)
+{
+	//continue; goes back to the beginning of the loop
+	//break; goes to end of the loop
+}
+//break;
+
+--Multi-dimension
+int[,] twoD = new int[5,5];
+int[,,] threeD = new int[2,3,4];
+...64 dimension is max
+--each diension can be 2^31-1 range

@@ -1,0 +1,165 @@
+HTML
+-- Hyper-Text Markup Language
+-- SGML - Standard Generalized Markup Language
+-- HTML - Hyper-Text Markup Language
+-- bracketed text is called tags, element, nodes, objects
+-- HTML 5 is not supported completely by all browsers.
+
+<html>
+	<head> <!-- browser level instructions -->
+		title, link, script, meta, base
+	</head>
+	<body>
+		<h1>Header 1</h1>
+		<p>Header 1</h1>
+	</body>
+</html>
+
+-- HTML formats the text or content
+-- For formatting the content, browser provide default CSS styles
+-- Browsers parse the document and generate the HTML DOM (Document Object Model) tree
+-- The root node of the DOM tree is html,
+-- DOM tree is composed of Objects(elements) and properties(attribute) are set and methods (onXXXX)
+-- Default CSS styles are applied on the Objects
+-- Rendering of the DOM tree happens
+-- Rendering is the process of converting objects (text) into Visual UI elements
+-- Any changes made to the DOM tree or structure, re-renders the DOM elements
+
+
+CSS - Cascading Style Sheet
+-- Collection of style properties or style rules { }
+-- these style rules are applied based on the Selectors
+-- Selectors are 1. Element Selector, 2. Class Selector, 3. ID Selector, 4. Universal Selector, 5. Multiple Selectors
+- Element Selectors - uses the element tag names like H1,P,DIV,...
+	-- applied on all occurences of the specified on those elements whose class attribute is defined. Applies on all Occurences of the class attribute irrespective of the element
+	.ClassName{} .height {....} .normal{...}
+	<div class= "Normal"> ..</div> <p class="normal"> .... </p>
+- ID Selector - uses a # notation and is applied on the element which matches with the id attributes value. typically one document will have only element with the specified id value
+	#myId {...}
+	<p id="myId"> ...</p>
+
+- Universal Selector - defined with a * notation and applies to all elements in the document
+	*{...}
+- Multiple Selectors - defined with a combination of element , class and ID selectors p, .class, #ID, div{...}
+
+-- Selectors can be filtered using : operator, also known as pseudo-classes
+ 	a:link{...} a:hover{..}, a:first{...}, a:last{...}
+	a:nth-child(even){...} input:checked,
+	attributes filters can also be used
+	input[type=text], img[src=...], form[action] a[href *='ss']
+	<form> .. </form> <form action = "sss" > Selected </form>
+
+
+Style Definition can be provided
+1. Inline-Styles -- defined using the style attributes of the element
+	<h1 style=".."></h1>
+2. Document-Level Styles -- internal style sheet defined within <style> element in the document
+	<style>
+		....
+	</Style>
+3. Application/Site-level styles -- external style sheets defined using seperate .CSS files and later linked to the html document using the <link> tag
+	-- styles are shared across multiple document (HTML files)
+4. Global Styles - can be imported from another sie, defined using import(url...)
+
+-- style properties for an element are inherited from the parent element and overriden by the child(nested) element.
+-- Root level- style overriden by container style ovrriden by sub- container ... 
+overrif=den by the element style
+
+-- box model - computes th space required for each element based on the element height + padding space + border width + margin space
+
+{height :50px,margin:10px,padding:5px,border:px solid black,width:100px}
+
+Actual width of the element : width+ padding left + padding right + border-left + border-right + margin-left+margin-right
+width = 100 + 5+ 5+2+2+10+10 = 134px
+height = 50+5+5+2+2+10+10 = 84px
+
+Actual space required is 134px * 84 px
+screen resolution : 1024px * 768px
+
+User-Agent(browser) overriden by external style sheet overriden by internal style sheet overriden by inline style
+
+
+JavaScript
+-- program are self-executing
+-- Wscripts , Cscripts for executing scripts
+-- scripts requires a host for execution
+-- scripts are interpreted and executed by the host
+-- Browser is a host for Jvascript, VBscript
+-- Parses, interprets and executes the scripts
+-- Modern browsers compile the scripts and executes it.
+
+-- JavaScript -- based on the ECMAScript(ES)
+-- NetScape communication created a dynamic scripting language called "Mocha",which was released for industry as "LiveScript". Borrowed the "JAVA" name from Sun Microsystem on payment of royalty
+-- Functional programming language
+-- Javascript trats the functions as first-class objects
+
+var fn=function(){}
+fn();
+
+-- ECMA standardised the scripting language - ES1 ...ES5(2004)(supported by all the browser).. ES6/ESnext(2014-15)(Not 		supported by most of the browser)
+-- ES6 specs says that JS is an object oriented language
+-- Browser provide their own version or implementation of JS specification
+
+-- browser incompatability
+
+{
+opacity:0;
+opacity:filter(alpha=1);--supported in edge
+
+animation-duration:3s;
+-webkit-animation-duration:3s; --chrome
+-moz-animation-duration:3s; -- mozilla
+-o-animation-duration:3s; -- opera
+-ms-animation-duration:3s; -- edge
+}
+
+-- Datatype in JS is Variant or Object
+-- Predefined objects - Objects, string, number, array, datetime, null, undefined,boolean, function, symbol
+
+var variableName = 10;
+variableName = "string";
+VariableName = true;
+
+-- window object is the root object in JS
+-- all variables and functions defined by the user are properties and methods of the widow object(in browsers)(for non-		browser it is considered as global object)
+-- window object has a children objects like document(represents the browser body tag),navigator, history, 		browserCompatability, location,localStorage, sessionStorage
+
+-- To define the Scripts, use<script> tag
+-- can be placed in the anywhere in the HTML document, also be an external .js file linked to the current document using <script src=""></script>
+
+-- Modes of Execution
+-- Immidiate mode and Deffered mode
+-- Scripts statements are executed immidiately after interpretation - Immidiate mode
+-- Scripts statements are executed when invoked -- Deferred mode
+
+
+Equality => == (value), === (type and value), !== , !=
+
+
+1. if(condition)
+	statement
+2. if(condition){
+	statement(s)
+		}
+3.if(condition){
+	statement
+	}
+	else {
+	}
+4. if(condition){
+	statement
+	}else(condition){}
+	else{}
+5. switch(expression) { case label:statement(s);break;default: break;}
+6. do{} while(condition)
+7. while(condition){}
+8. for(var variable = initialValue; condition;increment){}
+
+write a simple program which accepts 3 numbers from the user and displays the greatest of the three
+
+
+Arrays:
+-- dynamic arrays
+var arr = new Array(10);
+arr[100] = "canarys";
+

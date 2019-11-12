@@ -1,0 +1,43 @@
+Create a simple Banking application. This application maintains the account holder information like id, name, type of account and balance. the application performs 3 operations like: deposit, withdraw and fund transfer. there are two types of accounts, savings and current. there are some business rules that need to be supported:
+							| Savings	| Current
+=================================================================================
+1. New Account Opening Balance				| 1000		| 5000
+---------------------------------------------------------------------------------
+2. Minimum Balance in the account			| 500 		| 2500
+================================================================================
+
+
+while developing an application u need to create 3-layered applications
+3 layers are 
+1.Presentation layer
+2.Business logic layer
+3.DataAcces Layer
+
+Coding Convention
+1. Solution -> Canarys.Banking
+2. Add projects, Right click on the solution  -> New project.  ->
+2.1 Choose Visual C# -> Windows (Desktop) -> Class Library - Canarys.Banking.DataAccess
+2.2 Choose Visual C# -> Windows (Desktop) -> Class Library - Canarys.Banking.Entities
+2.3 Choose Visual C# -> Windows (Desktop) -> Class Library - Canarys.Banking.Shared
+2.4 Choose Visual C# -> Windows (Desktop) -> Class Library - Canarys.Banking.Process
+2.5 Choose Visual C# -> Windows (Desktop) -> Console App - Banking App
+
+3. select all the class1.cs from the solution and delete it
+4. Build the solution using CTRL + SHIFT + B
+5. Add referneces to the other projects by right clicking on the project, Add-> refernces-> projects and check on the 	required project
+5.1 cbd - cbe,cbs
+5.2 cbe - cbs
+5.3 cbp - cbd,cbe, cbs
+5.4 cba - cbd,cbe, cbs
+
+
+Design Principles
+SOLID Principles
+S->SRP-> Single Responsibility Principle
+O->OCP->Open Close Principle
+L->LSP->Liskov Subsitution Principle
+I->ISP->Interface Segregation Principle
+D->DIP->Dependency Inversion Principle
+
+SRP-> each class should have only one responsibility, only one person for changing or updating or modifying a class.
+

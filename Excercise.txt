@@ -1,0 +1,22 @@
+Create a Contact Management Application. This application stores the ContactId, -> int
+FirstName, Middlename, Lastname,->string varchar(50)
+Birthdate :datetime,date
+EmailId : string, varchar(50)
+Mobileno : long, bigint
+WorkPhone : string, varchar(20)
+homephone : string, varchar(20)
+IsActive : bool, 
+the application should be 3-layered application. all exception should be handled using a custom exception class. Standard naming Convention should be followed. The database table should be created. all DB operations should happen via stored procedures
+The following validation should be done:
+1. Firstname, lastname should not contain digit and special chars. only alphabets and space allowed.
+2. mobileno should be 10 digits and should not be less than 6000000000.
+3. birthdate should be 18 years less than today.
+4. email id should contain "@" symbol
+5. contactId will be an identity column in the db -- docs.ms.com
+operations to be supported
+1. GetAllContacts based on certain filters except deleted ones.
+2. Get Contact Details based on ContactId except deleted ones
+3. Create new Contact and save it
+4. Update the Details of an existing Contact without changing the ContactId.
+5. Delete an Existing Contact. [physical delete should not be happen]
+-- regex -> System.text.RegularExpression namespace

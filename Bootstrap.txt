@@ -1,0 +1,10 @@
+BootStrap
+-- Progressive rendering based on the device width
+-- devices are Phones (small), Tablets(medium), DeskTops(large), TVs (extra-large)
+-- sm => small(<640), md => medium(640-800)lg=> large(800-1024), xl => extra-large(>1024)
+
+-- Grid System - breaks the visible area into columns and rows
+	 each row can have max 12 columns
+--> container (approx 90%), container-fluid(width:100%)
+--> Column clas col-sm-1, col-md-1, col-lg-1, col-xl-1, col-1
+--> 1024 - 30 = 994 * 8% = 80 * 12 = 960

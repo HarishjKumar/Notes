@@ -1,0 +1,120 @@
+ASP.NET Application Side
+-- Caching -> improve the application performance
+-- Security -> to restrict access to the application
+-- State Management -> to track user operations or actions
+-- Error/Exception Handling
+
+ASP.NET runtime reads the configurations/ files as follows
+-- machine.config (IIS/Windows OS level settings)
+-- web.config (ASP.NET Worker Process)
+-- System.Web.HttpApplication instances - Global.asax represents the application obj
+-- Web.Config of the application 
+	-- overrides setting from web.config of asp.net and machine.config
+-- Loads the Requested Page and compltes the procesing
+
+
+Request Processing LifCycle
+1. Application_BeginRequest - triggered after the thread is created
+2. Application_AuthenticationRequest - Modules/Custom Auth modules can execute
+3. Application_AuthorizedRequest - user is authorized to make this request
+4. Application_RequestResolveCache - Loads the Caches for the applications
+5. Application_AquireRequestState - loads the session into the Context
+6. Application_PreRequestHandlerExecute - finds the approprriate handler based on the file extension
+	Page Object Life cycle begins - Page_Init,.... Page_Disposed
+7. Application_PostRequestHandlerExecute - unloads ad destroys the page object, response stream is updated and handler in  unloaded
+8. Application_UpdateRequestState - updates the session values
+9. Application-ReleaseResolveCache - Caches will be released/unlocked
+10. Application_EndRequest - output is dumped back to the application object, the thread terminates
+
+
+Application_Start, Application_End - only once in lifitime of the application
+ 	start -> Whe the application Created by IIS, and the first request comes
+	End -> when the application is stopped by IIS/WP
+
+Session_Start, Session_End
+	Start -> when a new user logs on to the site or when a new SessionId is generated
+	End -> after the user logs out of the site or when it is timed out
+Appliction_Error -> any UnhandledException in the processing cycle
+
+-- Asp.NET supports Tracing - allows application behavioral tracing
+-- Enable tracing support via web.config [ application-level]
+
+Machine.config, web.config =>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config
+
+Machine.config
+Machine.config.comments
+Machine.config.defaults
+
+
+Caching
+-- improve the application performance
+-- Different Ways
+1. Page Output Cache --> applies on the ASPX Page
+2. Fragment Caching --> applies to WebUserControl (Custom Controls)
+3. Data Caching --> applies to the data object used within the code
+
+-- Trace the performance
+
+<System.web>
+..
+<trace enable="true" pageOutput="false" />
+</system.web>
+
+When tracing is enabled => trace.axd tool is made available
+http://localhost:1000/myPage.aspx
+http://localhost:1000/trace.axd
+
+
+State Management
+-- Client-side and Server-side
+-- Client-side
+-- 1. QueryString
+	-- Key and Value pair, typically appended to the URL following the ?
+	-- Query string is visible in the HTTP header and visible to all servers.
+	-- Sensitive data should not be sent using Query Strings
+	-- Work with HTTP GET (GET, POST, PUT, DELETE, TRACE, OPTIONS, HEADER, CONNECT)
+	-- Query string cannot exceed 1024 chars.
+-- 2. Hidden Fields
+	-- HTML form element, holds data but not display it to the user
+	-- Typically sent into the HTTP Body as part of form postback.
+	-- works with HTTP POST method
+	-- form a part of bandwidth
+	-- <asp:hidden id="id" runat="server" Value="sadfddsfsd" />
+-- 3. ViewState
+	-- Hold or stores the previous value for the controls
+	-- Viewstate is an instance of system.Web.StateBag class
+	-- Name and value pair
+	-- view state is encrypted by the server and sent to the client
+	-- viewstate is restricted to the originating page.
+	-- viewstate are inplemented or rendeered as hidden fields.
+	-- Viewstate["key"] = value;
+-- 4. Cookies
+	-- small text files stored on the client side
+	-- files are typically4kb in size(max)
+	-- instances of System.Web.HttpCookie class
+	-- cookies scoped to the domain. cross domain cokkies are not sent
+	-- Browser will save, store the cookies are and also to retrive/load the cookies
+based on the current domain.
+	-- Transient cookies and persistance cookies
+	-- Transient cookies are stored temporarily in the browser memory as long as domain, these are written into the client-side file system and held for the entire duration of validity. It gets invalidated when used after the expiry period.
+	-- No guarantee is given about the lifetime of the cookie.
+	-- do not store password, or other sensitive info, as cookies are visible to all other users on the machine.
+	-- encrypt the data and store it.
+
+
+--Server Side
+--1. Application
+	-- instance of system.web.HttpApplicationState class
+	-- Hashtable used to store key and value pairs.
+	-- values are shared across the entire application(Across all pages / users).
+	
+--2. Session
+	-- session begins when the user logs into the site and ends when the user logs out of the site.
+	-- Session terminates when it is manually abonded from code or when iti is timed out(title).typically is 20min
+	-- Session Id is invalidated after the time out or when abondon is called.
+
+	-- SessionId - ASP.net_SessionId cookie - tansient cookie which is sent to the server on subsequent requests. if this cookie is not present, the erver will create a new session and assign a session id to it.
+	-- Invalidate the session ID and the cookie will also be nullified
+	-- Sessions are stored per-user.
+	-- Sessions are Hashtables
+

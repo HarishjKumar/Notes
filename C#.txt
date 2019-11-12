@@ -1,0 +1,58 @@
+C#
+brand new language, created specifically for .NET
+simplicity of C++, OO concept of java
+standardize as ECMA spec
+MS implementation is called visual C#
+truly oo language
+case sensitive
+
+
+casing Convetion in .net
+
+1.PascalCasing - first letter of each word is capitalized.
+		-used for Namespace, class, delegates, interfaces, properties, events, methods, structs, enums
+2.camelCasing - first letter of first word is lower cased, subsequently capitalized
+		-used for variables and parameters
+3._variables - private fields of a class
+4.FULL_CAPS - Full capitalization was used for constants
+5.all lowercase - reserved words in C#
+
+
+--datatypes in c# [int,short,long,uint,ushort,ulong,byte,sbyte,char,bool,string,object, decimal, float, double]
+--variables
+[modifiers]<datatypes><identifiers> [=<initial_value>]
+modifiers -> public, private, protected, internal, protected internal, static, reaadonly,const,volatile,
+data type -> any valid .net type
+identifiers -> name of variables,should not be a reserved word, 
+should begin with underscore|letters, can be 256 chars long
+
+--all variables should be initialized before usage - compiler throws an error otherwise.
+
+
+I/O statements
+console.writeLine -> prints a sequence of chars followed by /n	--puts()
+console.Write -> prints a sequence of chars.			--printf()
+Console.ReadLine ->reads a sequence of chars terminated by /n	--gets()
+Console.Read ->reads ASCII value of the char			--......
+Console.ReadKey ->acknowledges a key press.			--getch()
+
+Escape Sequences
+ \n, \t, \b, \\, \f, \r, \a, \"
+
+
+formatting of outputs
+("{0}",1990) --> interpolation
+("{0:N}",1990) --> interpolation //formats as number
+("{0:C}",1990) --> interpolation //format as currency if ("{0:C2}",1990) for 2 decimal places
+
+
+namespaces
+--logical organization of related types
+--ease of use, better understanding, reusabality of type-names
+--resolves type-name conflicts
+--every type has FQN -> fuly qualified name of the type
+--use the namespace keyword to define a namespace
+--should contain at least one type, and can contain child namespaces
+--eg: Company.Application.Project.SubProject.
+--eg: Microdoft.Office.Word
+

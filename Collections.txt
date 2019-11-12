@@ -1,0 +1,41 @@
+Collctions
+-- System.Collections namespace
+-- ArrayList, Hashtable, Stack, Queue,..
+-- Custom Collection by inheriting from collectionBase
+-- Collection support dynamic size.
+-- Ienumerable, Ienumerator, Icollection Ilist common interface implemented
+
+Generics
+-- Conversion issues are resolved
+-- Code reusable, reduce redundant coding
+-- Forms an instatiation relationship with another class.
+-- are also known as template class, parameterized class
+-- No limit on the number of type parameter you pass in.
+
+public class Generic <T> {}
+Where "T" stands for any valid .NET type -- struct, enum, class, interface, delegate
+Tinput, Toutput, Tresult, TEntity, TIdentity
+
+-- generic type parameter can be defined on class, interface, method, delegates.
+public delegate void MyDelegate<T> (...);
+interface IInterface<T> {}
+void MyMethod<T> (){}
+
+--System.Collections.Generics namespace contains various generic data structures 
+List<T>, Dictionary<T,U> , Stack<T>, Queue<T>, LinkedList<T>,SortedList<T,U>
+
+
+INDEXER
+-- treats an object like an array
+-- special type of property with the property name set to "this"
+-- these properties allow subscripting notations to be used.
+public string this[int index]
+{
+	get{..}
+	set{..}
+}
+//compiler converts the above code into:
+public string get_this(int index) {..}
+public void set_this(int index, string value){..}
+
+Tuple<1,2,3,4,5,6,7, Tuple<T>>{}

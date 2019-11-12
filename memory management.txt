@@ -1,0 +1,57 @@
+Memory management
+-- CLR has a Garbage collector (GC)
+-- GC manages the heap location (Standard Heap and LOB Heap)
+-- GC employes a Collection and Compaction algorithm (defragentation)
+-- GC maintains a list of object and a reference to the newly created object will be returned back to the application.
+-- GC will run clean-up operations when
+	-- there is no space to create new object (Memory Pressure)
+	-- the application is terminating (clean-up the entire heap S+LOB )
+	-- it is called explicitly via GC.Collect()
+-- System.GC is the static class which represents the GC
+
+-- GC breaks down the memory into3 generation
+	-> Generation 0 --> L2 Cache (ON-Chip memory ) 
+			--> Size depends on the L2 cache
+			--> newly created object reside here.
+	-> Generation 1 --> is on the heap and has a size similar to L2 Cache size
+	-> Generation 2 --> is the rest of heap on 32 bit machines max of 2GB
+					and on 64Bit machines - unlimited.
+
+(32bit machines will have 1gb for os and another 1 gb for spare kept by os and remaining to generation 2)
+
+Every new Object is created in Gen0. if there is no space (Memory Pressure), C will mark all the referenced (currently in use ) objects, and move these objects to gen1. Gen 0 will be cleaned up. New object will be created in Gen 0.
+while copying the object from Gen 0 to Gen 1, if GC finds that there is no space in Gen 1, it will move all the referenced objects from Gen 1 to Gen 2. and cleanup the entire gen 1, move object from Gen 0 to Gen 1 and cleanup Gen 0. Created the new object in Gen 0.
+
+Mark(referenced) and Sweep the heap location
+When an object is created, the GC maintains a next location pointer, which points to the end of the current object.
+
+Employee e1 = ((new Employee();)) -> refernced object
+
+While moving objects to the Gen 2, if GC finds that Gen 2 is also full, it marks all the referenced object and moves those objects towards the beggining of Gen 2 and tries to find space towards the end of the Gen 2 heap. If there is space, it will move objects from gen 1to gen 2. cleanup gen 1, move objects from gen 0 to gen 1 and clean up gen 0 and create new object in gen 0.
+if there is no space in gen 2 and no sace in genn 1 and no space in gen 0, then the application will crash.
+
+Some applications need explicit clean up operations, these applications might be holding reference to external resoures like files, networks, db, hardware drivers,
+A funciton which executes no matter what is the status of the application
+	-Finalizeer and in C# it is called a destructor.
+-- a destrutor isdefined oly if the application uses Unmanaged resoures like file pointers, COM references, Kernal 	Pionters, 
+-- all such external or unmanaged resources should be disposed inthe destrutor.
+-- destructors are guaranteed to execyte, they are executed towards the end of the object life cycle.
+-- it is usually the last method called on the object.
+-- A destructor should be defined in the code by the user.
+
+Employee e1 = new Employee();
+.....
+e1 = null;
+........
+......
+
+1. GC maintains a list of object called "finalizer list", which holdsmreferencce to all the object which have the destrctor 	defined.
+2. When the Gc runs, walks the ;ist removes the entries from the "finilizer lost". The objects still reside on the heap.
+3. there is a sleeping terminated by the GC, which checks for objects on the queue.
+4. if any object is enqueued, the thread builds the object in the grap
+5. the tread will invoke the desrictor or fimilizer.........
+6. After all the desrtuctors have copleted, the thread goes back to the sleep or picks up the next object in the queue.
+7. NextGC cycle,cleanup up the space used by the object(s)
+
+-- ~ClassName(){}
+-- 

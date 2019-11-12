@@ -1,0 +1,7 @@
+jQuery
+-- developed in 2004/2005 as a collection of functions
+-- most commonly found issues with javascript were addresed with jquery
+-- jq removes cross-browser compatability issues.
+-- jq Open source library
+-- extract and act ==> extract a set of elements (wrapper set) and execute functions on each element in wrapped set.
+-- 

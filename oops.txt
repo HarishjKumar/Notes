@@ -1,0 +1,229 @@
+Object
+- real world entity (physical or logical)
+- have attributes or properties and exhibit some behaviors
+- smallest unit of of representation (in memory) in a software package
+- instances of classes
+
+Class
+- classification of objects which have similar characteristics 
+- Define the properties, fields, methods and other characteristics
+- abstraction or abstract definition of an object
+- blueprint or a template based on which object are instantiated.
+
+Structured Programming
+-sequence of instructions
+-focus is on the sequence, not the data.
+
+Object Oriented Programming
+-data is the focus, 
+-sequence of instrution involve manipulating the data.
+
+Grady Booch -- Object Oriented Analysis and design with Applications
+
+Object Model
+-7 elements of which are 4 are major and 3 minor elements
+-Major
+1. Abstraction
+2.Encapsulation
+3.Hierarchy
+4.Modularity
+
+-Minor
+5.Concurrency
+6.Typing
+7.Persistence
+
+
+1.Abstraction
+--extracting information or attributes that are necessary for the problem domain, ignoring the other less important 	atttributes
+-- class or abstraction
+
+2.Encapsulation
+-- hide the representation(memory) behind implementation(methods)
+--accessing data can be done only through methods or function
+-- securing the data by using access modifiers
+
+--interface (implementation or methods) abstract the entire system (contains data)
+
+3.Hierarchy
+--ranking or ordering of types
+--every hierarchy should have exactly one root
+--One child node should have exactly one parent node.
+--system.object is the root object.
+--Single inheritance or there can be multilevel inheritance
+--polymorphism is an offshoot of hierarchy
+	-late binding or runtime polymorphism or dynamic or overriding
+		-refining the parent behavior
+	-overloading, static or compiletime polymorphism or early binding
+
+4.Modularity
+--componentization,compartmentalization, decomposition
+--.dll in .net and c++
+--.jar -->each jar file performs some specific task
+
+5.Concurrency
+--parallelly access to an object(multi-threading)
+--synchronization of access to the object is essential(in multi-threading)
+
+6.Typing
+--strong and week --converting from one type to another
+/*var j=10;
+j="welcome";
+j="10" + 10;
+*/ weekly typed
+
+7.Persistence
+--saving the state of an object across time and space(address space - memory).
+--convert the state of an object from its memory representation to a stream representation
+--serialization and deserialization from a part of the persistance behavior.
+
+
+object characteristics
+--identity --> name of the object at a point in time
+--State --> data held by the object at a point in time (static, dynamic) 
+	--fields,properties,attributes
+--Behavior -> actions performed by the object - methods,functions,operations
+
+
+
+
+
+F5 - starts with debugging
+CTRL + F5 - starts without debugging
+SHIFT + F5 - stop debugging or stop code execution
+F9 - setting or removing breakpoints
+F10 - step over code
+F11 - Step into code
+
+Class
+--A class by default has assembly level scope(internal)
+--A class can be declared as internal or public
+--A class can contain
+-fields
+-constructors,
+-destructors,
+-methods
+-properties
+-events
+
+--all class members have private as the default visibility.
+--A class always inherits from system.Object directly or indirectly
+--A class can be inherited further by default
+--A class can contain static (shared) members or non-static(instance) members
+--All class members are initialized to their default values
+
+Properties
+--getter and setter methods and also called as accessor and mutator
+--accesor or getter retrives the value of a field		--get operation--read
+--mutator or setter is used to assign value to a fiel.		--set operation--write
+--special types of methods which provides read/write access to fields
+
+<visibility><return type> propertyName
+{
+get{ //statements;return <value>;}
+set{<field>=value;}
+}
+
+public int EmployeeId
+{
+get{return empId;}
+set{empId=value;}
+}
+
+
+
+
+Relationships
+-- between objects
+	- link relationship
+	- aggregate relationship (composed of other objects)
+-- between classes
+ -1. Association - A class uses the services of another class, to complete its task
+	-> association can be uni-directional or bi-directional
+	-> most powerful and the simplest kind of relationship
+	-> build a complete OO system based on association
+
+ -2. Generalization/ Specialization
+	-> the specialized class derives behaviours from the generalization and refines the behaviour
+	-> also called as  Inheritance(Base-super/Derived-Subclass)
+	-> is the most widely used, misused and abused relationship
+	-> Every time a child is object is created, the base object will be created first
+	-> Not supposed to add behaviours, supposed to refine the behaviours
+	-> Extensiom methods
+		- allows  adding additional methods to the same class, thereby enhancing or extending the functionality of 			the class temporarily
+		- good choice for adding behaviours and upgrading the code base.
+		- extension methods are widely used in .NET Framework across versions
+
+.NET Framework(Microsoft)(BCL)			CLR Version(ECMA)
+1. v1.0						v1.0				2002
+2. v1.1						v1.1				2003
+3. v2.0						v2.0				2005
+4. v3.0						v2.0				2006
+5. v3.5						v2.0				2008
+6. v4.0						v4.0.30319			2010
+7. v4.1						v4.0.30319			2011
+8. v4.2						v4.0.30319			2012
+9. .....v4.6.1					v4.0.30319			2013,2014,2015,2017
+------> "is a kind of" relationship
+ 
+ -3. Composition
+	-> a class is composed of other classes (whole/part)
+	-> a class (whole) "has " a class (part)
+	-> lifetime of the part can be dependent on the lifetime of the whole (C)
+	-> or the lifetime of the part can be independent of the lifetime of the whole (A)
+	-> Composition and Aggregation are composable relationship
+
+VEHICLE --> CHASIS --> Composition when car is destroyed the chasis also destroyed
+VEHICLE --> ENGINE -->Aggregation as long as the car(whole) is thre it will be fixed into it and it cannot be used to other 				until the car is destroyed
+VEHICLE --> DRIVER --> Association it is not dependent on car
+
+ -4. Instantiation
+	-> Two classes are related to each other during instantiation
+	-> implemented by using "Templte Class", Generics in .NET
+	-> Class1<Class2> cc12 = new Class1<Class2>();
+	-> c12 object is a type of class1'class2
+	-> In instantiation, the two classes are merged to produce a new class which is then instantiated.
+ -5. Using
+	-> strict uni-directional association
+	-> a class uses another class for exactly one functionality.
+	
+ -6. Metaclass
+	-> class which provides information about another class.
+	-> information is basically the definition of the other class.
+	-> RTTI (Run Time Type Identification - C++), Reflection (JAVA, .NET)
+	-> Every System will have one Metaclass
+	-> IN. NET the Metaclass is System.Type
+		GetType()
+
+e1.EmployeeId = 10;
+C.WL (e1.EmployeeId);
+
+Struct
+-- is a class which inherits from system.ValueType
+-- objects created on the stack
+-- A struct cannot inherit from any other type except value type
+-- A struct cannot be inherited further.
+-- A struct cannot define a destructor
+-- A struct can implement multiple interfaces
+-- It does not support virtual functions as it cannot be inherited
+-- Struct supports (can be defined) parameterized cunstructors,
+-- parameterless (default) ctor cannot be defined
+-- All struct members should be initialized in the constructor
+-- default constructor is supplied by the CLR
+-- use the "struct" keyword to define a structure
+-- struct is used to store the data temporarily and perform quick operations and discard it.
+-- are useful when you want to pass data to the OS
+
+
+Enumeration
+-- named constants
+-- used to enhance the readabality of code
+-- used to restrict the user choices
+-- "enum" keyword is used to define
+-- Internal value is a type of integer
+
+
+
+
+--solution
+	-Consist of various projects

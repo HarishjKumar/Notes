@@ -1,0 +1,25 @@
+Exception Handling
+-- unanticipated Runtime errors
+-- Most of them can be anticipated and handled, some cannot be handled.
+-- all exceptions in .NET inherit from System.Exception
+-- 2 phase process
+	- phase 1 -> find a handler for the exception [VS Debugger, catch filters, OS Debug (Dr. Watson) error Dump,Event 				Log ]
+	- phase 2 -> unwrap the stack, removes instructions from the stack, transfers control to the figured out handler.
+-- try -> executes a set of statements with safety net
+-- catch -> filter to handle a particular type of exception
+-- finally -> cleanup code, always executes
+-- try {} finally {}
+-- try {} catch{}
+-- try{} catch(exception) {} catch (Exception) {}..
+-- try{} catch(exception) {} finally{}
+-- try{} catch (exception) {} ... finally{}
+-- programmatically exceptions can be generated using the "throw" clause
+-- throw new Exception(); or throw;
+-- application generated exception or Custom exception should inherit from S.exception
+-- exception are propegated from the inner mpst function to the outer most function.
+
+-- create a custom exception class in the shared project called MinimumBalanceException
+-- this exception should show the date and time when the error occurred
+-- this exception needs to be thrown when the withdraw rule fails in the else part
+-- in the client app, handle the expected exceptions while performing operation.
+-- 5 minute time limit.

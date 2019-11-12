@@ -1,0 +1,166 @@
+ADO.NET
+-- ActiveX Data objects for .NET
+-- Used to connet to data sources abd work with data.
+-- System.Data, System.Data.SqlClient, System.Data.OleDb, System.Data.Odbc, System.DataCommon namespaces
+-- 2 environments to work with data
+	- Conneected Architecture and Disconnected Architectures
+-- Connected Architecture
+	- connect to a data source and execute statements against the data source
+	- INSERT, UPDATE, DELETE and other DML, DDL, TCL statement(s) can be executed
+	- DbConnection, DbCommand, DbDataReader, DbDataAdapter, DbParameter, DbTransaction, DbException and DbError 		abstract bbase classes from the backbone of connected architecture
+	- Supports transactions [local and Distributed]
+		- local transsaction are transaction which are executed against a single data source
+		- multiple statements are executed as a part of a transaction against DB
+		- distributed transaction uses multiple data source, run transactiona across multiple server of the same 			DB or across multiple DB server
+servers
+	- Transaction has ACID Properties
+		- Atomicity, Consistancy, Isolation, Durabality--Google it
+
+	- For SQL Server 7.0 and above, System.Data.SqlClient namespace is used
+		sqlConnection : DbConnection, SqlCommand, SqlDataReader ......
+	- For Oracle 8.0 and above, System.Data.OracleClient namespace is used 
+		OracleConnection, OracleCommand,.....
+	- For MySQL, MySqlConnection,.....
+	- Factory Provider Model using which DB object can be created
+
+-- Disconnected Architecure
+	- not always connected to a data source, in-memory copy of the data source
+	- Application work with the memory copy which can be later synchrinized with the physical server.
+	- Used for "Offline" applications, also used for PoC(Proof of Concept), prototypes
+	- System.Data namespace provides classes : Dataset, DataTable, DataRow, DataColumn, PrimaryKey, ForeignKey, 		UniqueConstraint, DataView
+	- Works like a RDBMS, relatinship can also be created across tables
+	- also supports transactions where Commit and Rollback functionalities are provided
+	- Persist the data from memory into physical XML files.
+	- resource Heavy objects, discarded in favour of light-weight objects like List<T>, ObservableCollection<T>
+	- can store data retrived from multiple data sources
+
+-- Connected Architecture
+-- 1. xxConnection - xx can be sql, oracle, oledb, odbc, ....
+	- used connect to a data source, keeps the connection open and facilitates execution of statements
+	-- Properties
+		- ConnectionString - represents a valid set of properties for establishing a connection
+		- State - represents the current state of the connection using ConnecitonState enumeration
+	-- Methods
+		- Open - opens
+		- Close - closes
+		- BeginTransaction - returns a xxTransaction object
+		- CreateCommand - creates a xxCommand object and return it.
+	-- Events
+		- StateChanged - triggers when the connection state changes
+
+Eg: using System.Data.SqlClient namespace
+	SqlConnection con = new SqlConnection();
+ol	con.ConnectionString = "....";
+For Sql Server, the connection string
+	1. "Data Source[Server"="(local)|.|<ipaddress>|<machinename>"
+	2. "Initial Catalog|Database"="<dbname>"
+	3. "Integrated Security = SSPI|true|false"   -- google it
+		OR
+	   "trusted_connection=yes|no"
+		OR
+	   "user id|uid=<user ID>; password|pwd=<password>"
+con.ConnectionString = "data source = (local);database=northwind;integrated security=sspi"
+Other connection properties:-PoolSize, ConnectionTimeout, MultipleActiveResultSets, AttachDbFilename,
+
+For Oracle, the connection string
+1."Provider=<listener name>;user id=scott; password=tiger;
+
+For access
+	"Provider = Microsoft.Jet.Oledb.4.0;data source = pathtofile.mdb
+
+sqlconnection con = new sqlconnection
+con.Connectionstring="server=(local);database=northwind;integrated security=sspi";
+con].open();
+..
+..
+con.close();
+
+--2. xxCommand where xx stands for Db,Sql, Oracle, Oledb, Odbc,..
+-- Execute SQL statements against the data source
+-- Properties
+-connection = valid XXConnection
+- CommandText = "sqlstatement" | "stored proc name" | "table name"
+- CommandType = CommandType.Text | .Stored procedure | .TableDirect
+- Transsaction = valid x transaction object
+- Parameter = valid xxparameter[]
+
+-- Methods
+-ExecuteReader
+> executes a SELECT statement and returns a xxDataReader object
+- ExecuteNonQuery
+> executes non-select stetements, returns int as rowAffected
+-ExecuteScalar
+> Executes a select sstatement ehich returns a single value as object
+-ExecuteXML reader
+> available only with sqlcommand object
+> returns the data in the XML format
+> if the query is"SELECT * FROM table for XML AUTO"
+
+for Eg:
+con.open();
+sqlcommand cmd = new sqlcommand();
+cmd.Commandtext = "SELECT * from cUSTOMERS";
+cmd.commandtype = commandtype.text;
+cmd.connection = con;
+sqldatareader reader = cmd.Executereader();
+...
+con.close();
+
+3.. XXDatereader
+-- fast, forward-only cursor [move from 1 row tolast row]
+-- extracts rows from the server
+-- properties
+-hasRows- returns true if rows exist, else false
+-fieldCount - returns the number of columns|fields in the current row
+--Methods
+-read - positions the cursor on the nextrow, returns true is available, returns false if EOF. Initially the cursor will be at BOF
+navigate through the result set.
+-GetInt32(columnordinal) returns the value at the column ordinal(number)
+as an int
+-getint16,64,double,decimal,boolean,datetime...
+getvalue(columnordinal) returns the column value as object
+-nextresult - jumps across multiple result sets
+"select * from table1;select * from table2;
+--indexer
+-[int] - where the int value is the column number, returns column value as obj
+-[string] - string is column name, returns value as object
+
+for Eg:
+..
+SqlReader reader = cmd.executereader();
+while(reader.read())
+{
+c.wl(reader.Getint
+}
+
+
+
+
+
+-- Disconnected Architectures
+-- Dataset is like the virtual/in-memory Database/RDBMS
+-- Collection of Tables[ DataTable]
+-- A table collection of Rows [ DataRow ]
+-- A table collection of columns [ DataColumn ]
+-- A table collection of Constraints
+	-- unique, PrimaryKey, ForeignKeyConstraint
+-- A DB can contain Relations [ DataRelation ]
+-- A DB is also a collection Views [ DataView ]
+-- Supports Serialization (Persistance ) into XML
+-- Supports transaction using AcceptChanges(), RejectChanges()
+-- Can Contain data from multiple sources or it can also be constructed programmatically
+-- to populate the dataset with data from data sources, use xxDataAdapter objects
+
+xxxDataAdapter
+-- Methods
+--- Fill() -> Open a connection, execute a statement against the data source, fetch data from the data source, read through the column list and get the column metadata, creates a Datatable object, adds Datacolumn objects into the table, Creates DataRow objects and adds the datarow objects into the table by iterating through the data reader, adds the datatable into the dataset, commits the changes using Aceptchanges(), closes the data reader and the connection.
+
+-- Update() -> Open the connection, gets the rowstate for each row in the table, if the rowstate is added, calls Inseert operation, else if modified, calls update operation, else if deleted, calls delete operation, then it performs the same job that the Fill() method does.
+
+-- Properties
+	- select command - assign a valid xxxcommand object for SELECT Statement
+	- Insert command - assign a valid xxxcommand object for INSERT Statement
+	- Update command - assign a valid xxxcommand object for UPDATE Statement
+	- Delete command - assign a valid xxxcommand object for DELETE Statement
+
+Note - Adapter is a connection oriented object

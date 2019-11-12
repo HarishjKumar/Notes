@@ -1,0 +1,85 @@
+Delegates
+-- function pointers which point to a function
+-- can execute any function which matches its signature
+-- can invoke a method on any object (polymorphism - late-binding)
+-- Delegate is a class which internally implements the function concept
+-- System.Delegates is the base class, 3 methods Invoke, BeginInvoke and EndInvoke
+-- code for these methods is written by the CLR at runtime.
+-- type-safe construct and it is used to invoke methods which match its signature
+-- System.MulticastDelegates which can invoke multiple methods in a single call.
+-- 3 steps sequence
+	1. Declaration
+	2. Instantiation
+	3. Invocation
+1. Declaration
+-- declared like a method
+[visibility] [modifiers] delegate <return_type> <Delegatename> ([agr_list]);
+-- compiler converts the method declaration to a class declaration
+
+public delegate void Mydelegate(string message);
+//compiler converts this signature as
+public class Mydelegate : MulticastDelegate
+{
+	public void Invoke(string message) { }
+	public IAsyncResult BeginInvoke(strring message, AsyncCallback cb, object state)
+	public void EndInvoke(IAsyncResult iar) { }
+}
+
+2. Instantiation
+-- while creating a delegate object, we need to pass the adddressOf function
+-- Name of the function returns the address of the function
+-- public static void MyMethod() {} --> MyMethod() - call, MyMethod-name
+Eg:
+	Mydelegate md = new MyDelegate(MyMethod); //static method
+	Mydelegate md1 = new MyDelegate(obj.Method); //instance method
+-- Method signature should match with the delegates signature
+
+3. Invocation
+-- invoking the delegate, the method that is assigned will get executed.
+Eg:
+	md("string"); //compiler shortcut to the second line
+	md.Invoke("string");
+
+-- Add more function or invoke multiple functions,
+	md+= new MyDelegate(AnotherMethod); //Adding multiple delegates
+
+	md("string")
+	=> MyMethod("string"), AnotherMethod("string") get executed sequentially,
+-- Combining multiple delegates into a delegate
+-- Remove methods from the list
+-- md -= new MyDelegate(AnotherMethod); 
+--
+
+--
+
+void Sort(int[] arr)
+{
+//clean the array - removes all empty elements
+//sort the array - [linear sort][Bubble, Quick, Insertion, Merge...]
+//remove duplicates
+}
+void Sort(int[] arr,/* *algo(){} */ MyDelegate md)
+{
+//clean the array - removes all empty elements
+md(arr);
+//remove duplicates
+}
+
+
+PUB-Sub Model-- Publisher-Subscriber Model
+
+Event - notification of an action
+Publisher--raise or send notifications
+subscriber objects--registers to receive this notifications
+delegate object--triggers or send the notification to the subscriber invokes the subscriber object
+
+ 
+
+Publisher--publishes-->delegate(broker)<--registers--subscriber
+publisher--independent of the subscribers - no knowledge of the subscriber
+subscriber--independent of the publishers
+event data--data that needs to be passed from publisher to the subscriber
+      --in.net is a type of system.eventargs
+event--notification of an action
+Delegate
+
