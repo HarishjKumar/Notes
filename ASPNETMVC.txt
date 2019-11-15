@@ -1,0 +1,208 @@
+ASP.NET MVC
+
+Model- Data represented as Entity
+View - UI
+Controller - Binds the model with a view and handles actions that happen on the view
+
+
+- based on the ASP.NET Framework
+- Lot of issues with the ASP.NET Webforms architecture
+- Ruby on Rails(MVC) was percusor for MVC framework
+- Open architecture, flexible, extensible, 
+- ASP.NET Webforms issues
+	- Lots of aspx pages, managing was difficult
+	- Custom rendering of HTML is difficult
+	- Bookmarking Pages is cumbersome, due to confusing URLs
+		http://localhost/app/page.aspx?id=1&name=canarys
+		http://localhost/app/list/companies/id/canarys
+	- SEO(search Engine Optimization friendly URLs not easily possible
+	- Event Driven / command driven
+	- ViewState - Hidden Field - takes part in round trip - 
+		- can be disabled, better performance ASP.NET retains ControlState
+		- ControlState cannot be disabled.
+	- Rich Server Controls
+		- in-flexible, 
+
+
+-- MVC framework is based on HttpHandlers - 
+-- MVCApplication is the root object, follows with Modules, Handler -> MVCHnadler
+
+  -- Read the incoming URL and split it into multiple segments - RouteHandler
+  -- Segment are defined as part of Routing as follwos: 
+	http://localhost/{controller}/{action}/{parameter}
+	http://localhost/product/list/1
+	http://localhost/{controller}/{action}/{pagenumber}
+  -- After creating segments, it fills the values into Route-Datadictionary
+=> MVC handler invokes the RouteHandler
+=> Invoke the ControllerFactory, passing the route information to it.
+=> ControllerFactory finds the controler class and instantiate the class.
+=> ControllerFactory will find the action method, the parameter required, if any 
+=> if required, controllerfactory gets the information from the router data
+=> 1. creates parameter as required and invokes the action method
+=> if data not present in the RouteData, then it read the incoming request object
+=> if the data is present, then it invokes a ModelBinder object
+=> ModekBinder object loads the request parameter, finds the target class, creates object for the class, assigns all request parameter to the object, validates the object and returns the object back to the ControllerFactory
+=> ControllerFactory will now invoke the action method on the controller object, passing the parameter to it.
+=> The action method executes and generates an ActionResult output.
+=> the ControllerFactory hands ovre the ActionResult to the MVCHandler.
+=> mvchandler passes the actionresult to the selected view engine
+=> ViewEngine finds the specified View from the ActionResult, loads the View, gets the data|Model that needs to be bound with the View from the ActionResult, executes the view Template alongwith the data and generate output HTML
+=> return the output HTML to the MVC handler
+=> THe MVCHandler returns it back to the client.
+
+[user-request-((route-controlfactory-controller-Action--
+--Actionresult-viewengine-view-html)server)-user]
+
+NameSpace = System.Web.MVC
+
+
+Razor View engine
+.cshtml
+.vbhtml
+
+_File.cshtml =>hidden files
+
+_layouts.cshtml => master page
+_ViewStart.cshtml => nested master
+index.cshtml => _ViewStart => _layouts
+
+@Html.xxxxx => HtmlHelper classes.
+
+Razor Syntax (Only for Views)
+@{
+	//Statements
+}
+8
+@*......*@ -> commenting style
+
+@for (....) {
+<h2> Syntax HTML </h2>
+}
+
+@RenderBody() => placeholder for content => <asp:ContentPlaceHolder>
+
+Shared Folder
+-- contains files which are used across multiple controllers/views
+
+@styles.Render => bundles.config => replaces the line with <link> tags
+@Script.Render => bundles.config => replaces the line with <script> tags
+@RenderSection => add <script> sections in content pages
+
+
+MVC 
+-- Design Pattern
+-- Seperate the functionalities on the client-side
+-- a class which holds data, a clas which handles actions/commands and a class which presents control or interacts with user.
+
+Model
+-- holds the data required by the view.
+-- Model classes prvide logic to validate the data being held.
+-- Two types of Models -> Domain Models and View Models
+-- Domain Model -> a class which holds the business data/domain data
+-- View Model -> a class which holds the data required by the view.
+
+
+Controller
+-- handles the incoming request and maps it to the action method.
+-- provides logic for handling the action
+-- redirect and assign the processed model to a view.
+-- decides the view and the model that needs to be displayed using the particular view
+-- controller inherit from system.web.Mvc.Controller Class
+-- All controllers are written to the Controllers folder.
+-- A controller can provide multiple actions based on different HTTP verbs
+
+Views
+-- presents the data to the user
+-- accepts the user action and sends it to the server.
+-- Views does not support code-behind files.
+-- Codes can be written into the view directly using @{ } Razor syntax.
+-- no support for web server controls
+
+
+
+Categories Table
+1. CategoryId
+2. CategoryName
+3. Description
+
+
+1. Category Class
+2. Category Data Access  Class
+3. Category repository --> fatch data from db or from external Services
+4. Controler
+5. Views
+
+
+
+Entity FrameWork
+-- Simple mechanism to access the database
+-- ORM (Object-to-Relational Mapper) tool
+-- Map the Conceptual Schema (class Entity) into the store Schema(Relational Entity)
+-- Map The conceptual Schema (Class Entity) into the Store Schema(Relational Entity)
+-- Execute LinQ queries against the DB Context and EF will execute it against the DB
+-- Defines 3 Files
+	- CSDL -> Conceptual Schema Definition Language -> defines the .NET class
+	- SSDL -> Store Schema Description Language -> Defines the DB table structure
+	- MSL -> mapping Schema language -> Maps the SSDL(column) to the CSDL (field)
+
+-- Approaches to work with EF
+=> 1. DataBase First approach -> the Database(store) exists, the Conceptual (class) is generated based on the database table structure
+=> 2. CodeFirstApproach -> The Conceptual (class) existing, but the database does not exist or it is not mapped. Create the Database table, if it does not exist, populate values into the table and then use the table.
+=> 3. Model First Approach => Define the model with all associations, the EF will create the conceptual class and also the store table
+
+
+-- Add a Item called ADO.NET Entity Data Model -> EDMX - designer
+-- Creates a class which inherits from DbContext EF class and write the mappings.
+
+-- Ensure that the application supports EntityFrameWork - package to install.
+
+
+
+Routes
+-- contains segments
+-- desired segment of the URL are: controller,action,
+-- each segment is defined with{}
+-- URLs: http://localhost/controller/action/id
+Route URL : {controller}/{action}/{id}
+-- URLs: http://localhost/controller-action/id
+Route URL : {controller}-{action}/{id}
+-- URLs: http://localhost/pages/products/index/1
+Route URL : {controller}/{action}/{id}
+-- URLs: http://localhost/products-list
+Route URL : "products-{action}/{id}"
+
+
+Route Table entries
+
+
+
+Managing State
+- Client-Side and server Side
+- Client-Side => Query Strings,Hidden Fields, Cookies
+- Server-Side => Session
+- Within the Request
+	-> ViewData 	-> Statebag which manages the state between the controller and view
+	-> ViewBag 	-> dynamic object, properties can be added directly to this object
+			-> DLR (Dynamic Language Runtime) subset of CLR
+		--> Lifetime of ViewData or Viewbag is one request cycle.
+		--> exist from Controller to view.
+		--> Once view completes execution, these items are lost
+	-> TempData -> Key/Value pair which carries items from the controller to the view
+			-> TempData items persist across redirections.
+		--> ViewData/ViewBag is not persisted across redirections.
+--> Across calls use Session
+	
+
+CustomErrors section in the web.config
+<customErrors mode="off |on| Remoteonly">
+mode=off => Custom error pages will not be displayed, instead it will display the yellow screen
+Mode=On => Custom error pages will be displayed, Yellow page not displayed
+
+Mode=RemoteOnly => for remote users - custom error pages are displayed, 
+			for local users - yellow page is displayed
+
+== update in the web.config
+<system.web>
+	.....
+<customeErrors mode="on" />
+</system.web>

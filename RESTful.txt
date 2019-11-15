@@ -1,0 +1,62 @@
+Service
+-- Service Provider -> accepts requests for resources from the client and return a resource as a response.
+-- Service Customer -> places a request for a resource and handles the response recieved from the service provider
+
+Constraints of RESTful
+
+-- Formats(media formats) -> XML, JSON(JavaScript), SOAP, PlainText,[open specification] for communicating
+	-> Uniform Interface (requst in a unique format)across entire applications
+		identification of resources;
+		manipulation of resources  through representations(extensions);
+		self-descriptive messages; and,
+		hypermedia(any media) as the engine of application state.
+	-> Stateless == HTTP(Preferred to build RESTful)/TCP (each request in stateless therefore asks for login again)			(every request should carry the self contained information it will not create an cookie or it will 			not store any client information)
+	-> Cacheable(resources are downloaded and cached on client side)
+	-> Layered - Micro-Services(different services(API) are created for each function and communicates between the 			APIs)(ZOON)
+	-> Client-Server
+	-> Code-On-Demand (Optional)(Yet to be developed)(cient passes the code and server has to execute that code) 
+
+Web-based Services
+1. ASMX Services -> ASP.NET Web Service
+	-- HTTP/XML based solution
+2. WCF (Windows Communication Framework) Based Services - 2006 onwards
+	-- HTTP, TCP, IPC(Inter-Process Communication), MSMQ, REST,
+3. Web API
+	-- HTTP(s)/XML|JSON
+--Two categories
+	- SOAP based services
+	- RESTful services
+SOAP Based - ASMX service, WCF Services(excluding REST)
+-- communication happen by transferring SOAP documents
+-- SOAP is a subset of XML specification - stricter implementation of XML
+-- A SOAP document is constructed as
+	<soap:Envelope>
+		<soap:Header> ... </soap:Header>
+		<soap:Body> XML FRAGMENT is created here. </soap:Body>
+	</soap:Envelpoe>
+-- are more secure than ordinary XML based services
+
+RESTful
+-- Simplicity and ease of use
+-- Protocols like HTTP which supported all constraint of the REST specification
+-- Resource Methods of HTTP like GET, PUT, POST, DELETE
+-- ASP.NET MVC Web APIs based on the REST architecture
+
+WEBAPI controller inherit from apicontroller and it inherits from IHTTPController, IDisposable
+
+http://http://localhost:55611/api/sample
+http://http://localhost:55611/api/sample/1
+http://http://localhost:55611/api/sample/1?name=hari
+
+http://http://localhost:55611/api/sample/1/Canarys ==> For this we have to add our own routes
+
+sql server     -    DBCC CHECKIDENT('Products',RESEED,90)
+
+
+EDIT:  HTTP-PUT : api/sample/10
+	BODY: {...} Content-Type: "application/json"
+
+DELETE:  HTTP-DELETE : api/sample/ProductId
+
+INSERT: HTTP-POST : api/sample
+	BODY: {...} Content-Type: "application/json"
