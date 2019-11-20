@@ -1,0 +1,105 @@
+Web based application
+-- HTML, JavaScript run on the client Side
+-- JavaScript performs DOM manipulation to assign values and to retrieve values.
+-- every DOM changes => DOM tree updated and page is re-rendered
+-- 
+
+Angular CLI
+-- optionated tool, uses
+----> WebPack --  build and developement tool
+----> Jasmine -- JS Unit Testing Framework
+----> Karma -- Unit Test Runner - Executes unit tests
+----> TypeScript -- dev language
+----> Protractor -- End-to-End testing utility based on Selenium WebDriver
+
+----> Bootstrap CSS ony without the JS
+----> Angular-Material CSS
+----> Angular-Bootstrap
+----> Ionic UI FrameWork
+
+----> RxJs -- Pattern-Observable and subsriber - Asynch javascript code execution
+		-- Based On Promises API
+
+----> Ng-Redux -- state management utility
+----> Node.js -- for the Dev Environment
+-----> ng serve --open
+
+
+
+//npm install package --save ==> adds a "dependencies"  == run time requirement
+npm install package --save-dev ==> add a "devdependecies == compiletime reqt.
+
+Modules in javascript
+-- in javaScript, each file is treated as a module.
+-- A file exports types or functions so that other files (modules) can import them and use them
+-- only those types are functions that are exported from one file can be imported by other files.
+--import or require statements to import the types or functions
+-- use export or module.export to export types or functions
+-- System.js or Common.js packages resolve the module level scoope
+
+Modules in angular
+-- collection of various component like directives, pipes, services, injectables, and modules.
+--there can be multiple files forming a part of angular module.
+-- to access any of these components, the components should be made part of a module and the module should be loaded first. only after loading module, the other components like directives, pipes, servies etc are available.
+-- functionality decomposed part of application.
+-- ng(angular) modules identified using ngmodule decorator or annotation
+-- ngModule Decorator defines
+	-- Declaration - are a list of components, directives which are part of module
+	-- Import - lists all external modules, this module is dependent on 
+	-- Exports -> lists all the services, injectable and pipes used
+	-- Bootstrap -> section appears only in the root or startup module.
+			Typically only one module in the application will define this property. the bootstrap property 			lists the startup component to be displayed once the application is launched
+
+
+{{}} --> Interpolation Syntax
+----> provides one-way binding to a property or function or expression
+{{ <expression> }} where the expression can be a property name, field name, method call() or a simple statement like '10 + 500' a+b or 'fieldName' || null
+
+DataBindings in Angular
+1. One-Way bindings 	- property binding, use [] for property bindings 
+		   	- can also be performed with interpolation {{}}
+			- event binding, use() to bind to control events.(Template->code)
+2. Two-Way Binding 	- use both, property and event bindings, at the same time
+			- use the [()] notation, also called as banana notation.
+
+ng generate component component-name --skip-test=true --flat --module=app
+--skip-test=true -> does not add the *.spec.js file
+--flat -> does not create a folder for the component
+--module=modulename -> the component entry should be included in which module
+generate or g -> creating a schematic entry
+component | class | module | service | pipe | directive  <= Schematic
+
+Header Component
+ng generate component ui/header --skip-tests=true --flat (module name dont need because app has only one module by default 							it will assign that only
+ng g component ui/footer		(--flat will skip the creating the folder therefore footer folder is created)
+
+CDN link --> Content Delivery Network (where url typically displayed)
+
+
+Add a component called home without then tests file and without folder
+ng generate component ui/home --skip-tests=true --flat
+ 
+
+MV-* pattern
+ModelView-whatever pattern
+//add a model file in to the project 
+ng generate class models/product-model --flat --skip-tests=true
+ng g component products/product-home --skip-tests=true --flat 
+
+
+services are components which holds data.
+-- also called as injectables
+-- data services are inject into the components
+-- Angular maintains the service instances and injects them when needed
+-- only one instances of a service is created [sigleton object]
+-- add services by using "ng g service <service-name> [options]"
+
+For Ex: 
+ng generate service services/mock-product --flat --skip-tests=true
+
+ng commands
+-- ng build
+-- ng build --prod newer version
+-- ng lint 	(build)
+-- ng serve  (debug)
+-- ng test 	(runs all the spec file in app it should be executed before lint)

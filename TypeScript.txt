@@ -1,0 +1,26 @@
+TypeScript 
+-- Type-Safe Scripting langiuage built over ES-6 spec
+-- supports all features of ES-6 and adds additional experimental features like annotation and others.
+-- created by microsoft as a replacement for type-agnostic JavaScript
+-- TypeScript provides a transpiler - translator + compiler 
+-- Compiles the TypeScript and coverts the TS code into JS code.
+-- Additional functionalaties required by your TS code will be filled in into the JS code
+-- every variable has a type: number, string, boolean, datetime, any, undefined, null, never, void
+-- every method must specify a return type, arguments should also contain types
+-- Typesript supports object oriented programming, ie class, 
+-- supports visibilities like private, protected, public,
+-- supports inheritence
+-- support fot interface
+-- supports Generic Types<>
+
+
+install the typescript compiler
+NPM -> Node Package Manager
+npm[install|uninstall|update....] --[g | save-dev|save....]package-name package-list
+npm install --save typescript [@v3.0|@latest(default)]
+NPM -> NPM Executor -> execute commands
+npx[ command name]
+
+-- create file called package.json
+npm init (first command on project folder)
+

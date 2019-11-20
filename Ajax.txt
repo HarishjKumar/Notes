@@ -1,0 +1,35 @@
+AJAX
+--> Asynchronus JavaScript And Xml
+--> Synchronous Request-Response
+	- Browser Places a call to the server(Request) and it waits to recieve the response from the server.
+	- During the wait period, the browser window freezes
+--> Asynchronous Request-Response
+	- Browser places a call on another object on the client side.
+	- This Object is called XmlHttpRequest (XHR) object, part of browser
+	- The XHR object, in turn, will place the call on the server.
+	- The browser call completes, and the browser is now free
+	- the XHR Object waits for the response from the server
+	- Once it recieves the complete Response, the XHR object will call or execute a script on the client, this script
+is called as "Callback functon"
+	- A callback function is asssigned to the XHR object
+	- This function typically updates a part of the page.
+
+XHR concept was introduced by Microsoft back in 1998/99 with Outlook Web Access.(discontinued becoz there is no privacy of data since application runs in background continuesly)
+(Google picked up it in 2004 and made secure)
+
+--JavaScript
+
+---> JS is used for placing the calls, updating the page,
+---> all scripting for asynch operation are done using JS
+
+--XML
+---> Was the original data transfer format,
+---> Instead of XML, use JSON or plain text
+
+
+$.ajax({options}); => create the XMLHttpRequest, and other operations
+$.get({})
+$.post({})
+$.getJson({})
+
+//Handle JS Events like onClick.
