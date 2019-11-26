@@ -63,6 +63,8 @@ DataBindings in Angular
 			- use the [()] notation, also called as banana notation.
 
 ng generate component component-name --skip-test=true --flat --module=app
+
+
 --skip-test=true -> does not add the *.spec.js file
 --flat -> does not create a folder for the component
 --module=modulename -> the component entry should be included in which module
@@ -103,3 +105,146 @@ ng commands
 -- ng lint 	(build)
 -- ng serve  (debug)
 -- ng test 	(runs all the spec file in app it should be executed before lint)
+
+
+
+
+Angular Forms
+
+-- two ways to develope forms-based application in angular
+-- Tempdata Driven Forms
+-- Reactive Forms
+-- form classes are defined in a module called "FormsModule" and "ReactiveFormsModule"
+-- import these two modules into the Appmodule
+
+-- Some directives available are: ngSubmit, ngModel [2-way binding], add reference to HTML elements using # symbol
+-- Validations on the Forms are based on the control states
+---> pristine - the value of the control is original and the control is not touched
+---> touched - when the control gains focus
+---> untouched - when the control has not got the focus
+---> dirty - when the value has changed
+---> valid - when all the validators are successful
+---> invalid - whaen any one of the validators has failed.
+
+--> valid -> pristine -> touched -> dirty -> invalid | valid
+
+validation attributes are not defined in angular, instead use HTML validation attributes
+-- required, min, max, pattern, range, attributes have to be used.
+-- 
+
+Template driven forms perform asych updates - no control over data updates
+Reactive forms perform sync updates - absolute control over when updates need to happen
+
+
+--ng g component products/product-create --skip-tests=true --flat
+
+
+Routing in Angular
+-- Navigate support to the application
+-- navigate from page to page
+-- routes defined using Routing table
+-- first matching route is executed
+-- Routing Component integrated with the browsers history
+-- Routing component are available in the library "@angular/router"
+-- to use routing component, we need to add RouterModule to the application
+-- class/Component/Directives that are used here are:
+	Route class -> defines a route{ path: "/", component: ComponentName }
+	Router Class -> collection of route object
+	router-outlet component -> templaate or placeholder below which angular replaces the components that match the route
+	routerLink attribute directive -> creates a route dynamically, generates a href
+	routerLinkActive attributes directive -> applies the "active" CSS class
+	ActivatedRoute class -> represents the selected route or the active route at a point in time
+	Router class -> used to provide soft-navigation(through the code it will access the page)
+(hard-navigation will hit the server by clicking some button that is forceably)
+
+ng g component ui/page-not-found --flat --skip-tests=true --module=app
+
+[
+	{ path: "home" , component: HomeComponent },
+	{ path: "home/:id", component:ContactDetailsComponent},
+	{ path: "new",component: CreateContactComponent},
+	{ path: "update/:id",component: UpdateContactComponent},
+	{ path: "remove/:id",component: RemoveContactComponent},
+	{ path: "error",component: ErrorComponent},
+	{ path: "", redirectTo: "/home", pathMatch:"full"},
+	{ path: "**",component: PageNotFoundComponent},
+];
+Additional Componets: HeaderComponent, FooterComponent.
+
+[home, new, Something]-- links
+
+
+
+
+Create Angular
+
+
+npm install -g @angular/cli
+
+
+ng new contat-app
+
+/*(change to present folder)
+npm install package --save*/
+
+ng g component component-name
+
+ng generate component component-name --skip-test=true --flat --module=app
+ng generate component ui/header --skip-tests=true --flat
+ng g component ui/footer
+ng generate component ui/home --skip-tests=true --flat
+ng generate class models/product-model --flat --skip-tests=true
+ng g component products/product-home --skip-tests=true --flat
+ng commands
+-- ng build
+-- ng build --prod newer version
+-- ng lint 	(build)
+-- ng serve  (debug)
+-- ng test 	(runs all the spec file in app it should be executed before lint)
+
+
+
+
+
+
+
+Routing 
+Route valus have to extracted and Soft-navigation
+Component to add
+1. class	-> Models	-> Customer-Model	--sT
+2. Service	-> Services	-> customer		--sT, --F
+3. Module	-> Admin	-> admin		--flat
+4. Component	-> Admin	-> customer-home, customer-list, customer-details, customer-create, customer-update									--sT, --F, --module=admin
+5. Module	-> Admin	-> admin-routing
+
+6. Guard	-> Auth		-> Auth-Guard	- module=app
+7. Component	-> Auth		-> login, logout	- module=app
+8. Service	-> Auth		-> authentication
+9. Class 	-> Auth		-> login-model		--sT
+
+
+
+Http Services in Angular
+--  "HttpClientModule" from the "@angular/common/http" package
+-- "HttpClient" -> wrapper built on top of XHR
+-- "Observable" is returned by HttpClient methods
+-- "Observable" object is defined in the "RxJs" package
+-- "RxJs" is called the reactive extensions for javascript
+-- provides async operations based on JS Promises API
+-- Reative Extension support async operations, iterators, filters, maps and reduce functionalities.
+-- Iterates through each element in the collection, apply filters and reducers and finally returns a data set
+-- Transform one collection in one format to a collection in another format
+-- Data Transformation operations are called as "Data Pipelining"
+-- Subscription for the async call is required, only then the observable will execute.
+
+-- HttpClient class provides methods for Http-Verbs like -> get,put,post,delete,
+-- this.httpObj.get(....), this.httpObj.post(....)
+-- var obj = this.httpObj.get(..);
+-- obj.subscribe(
+next: {...},
+complete: {...},
+error:{...}
+);
+
+
+CROSS ORIGIN REQUEST/RESOURCE SHARING - CROS
