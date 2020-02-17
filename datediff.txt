@@ -1,0 +1,117 @@
+protected void lbResetPassword_Click(object sender, EventArgs e)
+    {
+        //disable the validators
+        rfvPassword.Enabled = false;
+        cvLoginSmall.Enabled = false;
+
+        Page.Validate();
+
+        if (Page.IsValid)
+        {
+            string userName = tbUsernameSmall.Text.Trim();
+
+            string message = CoreUserUtilities.ResetUserPassword(instance.InstanceID, userName, 1000000);
+            if (!string.IsNullOrEmpty(message))
+            {
+                if (message.Equals("Success"))
+                {
+                    if (Counter == 0)
+                    {
+                        Dict.Add(instance.InstanceID, DateTime.Now);
+                        lblResetComplete.Visible = true;
+                        Counter++;
+                    }
+                    else
+                    {
+                        if (Dict.ContainsKey(instance.InstanceID))
+                        {
+                            DateTime dt;
+                            Dict.TryGetValue(instance.InstanceID,out dt);
+                            string datediff = (DateTime.Now - dt).TotalMinutes.ToString();
+                            if(Convert.ToInt32(datediff) > 10)
+                            {
+                                lblResetComplete.Visible = true;
+                                Dict.Add(instance.InstanceID, DateTime.Now);
+                            }
+                            else
+                            {
+                                validatePage("Wait for some time");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    validatePage("The username you entered is not valid.");
+                }
+            }
+        }
+    }
+
+-------------------------------------------------------------------------------------------
+
+string val="10";
+            if(counter==0)
+            {
+                counter++;
+                Dict.Add(instance.InstanceID, DateTime.Now);
+                val = "10";
+            }
+            else
+            {
+                DateTime dt;
+                Dict.TryGetValue(instance.InstanceID, out dt);
+                val = (DateTime.Now - dt).TotalMinutes.ToString();
+            }
+            if (Convert.ToInt32(val) >= 10)
+            {
+}
+
+-------------------------------------------------------------------------------------
+    protected void lbResetPassword_Click(object sender, EventArgs e)
+    {
+        //disable the validators
+        rfvPassword.Enabled = false;
+        cvLoginSmall.Enabled = false;
+
+        Page.Validate();
+
+        if (Page.IsValid)
+        {
+            //forgot password for first time
+            if(repeatCounter==0)
+            {
+                repeatCounter++;
+                Dict.Add(instance.InstanceID, DateTime.Now);
+                remTime = "10";
+            }
+            else
+            {
+                DateTime dt;
+                Dict.TryGetValue(instance.InstanceID, out dt);
+                remTime = (DateTime.Now - dt).TotalMinutes.ToString();
+            }
+            if (Convert.ToDouble(remTime) >= 10)
+            {
+                string userName = tbUsernameSmall.Text.Trim();
+                string message = CoreUserUtilities.ResetUserPassword(instance.InstanceID, userName, 1000000);
+                if (!string.IsNullOrEmpty(message))
+                {
+                    if (message.Equals("Success"))
+                    {
+                        lblResetComplete.Visible = true;
+                        Dict[instance.InstanceID] = DateTime.Now;
+                    }
+                    else
+                    {
+                        validatePage("The username you entered is not valid.");
+                        repeatCounter = 0;
+                    }
+                }
+            }
+            else
+            {
+                validatePage("Try again in " + Convert.ToInt32(remTime) + " Minutes");
+            }
+        }
+    }

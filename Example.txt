@@ -1,0 +1,23 @@
+Products Table
+
+Product id
+product name
+product quantity
+product price
+
+
+Customer
+
+CustomerId
+CustomerNAme
+Customer phone no
+customer address
+customer Email
+
+Order
+
+OrderId
+Product id	foreign key
+customer id	foreign key
+OrderQuantity
+total price

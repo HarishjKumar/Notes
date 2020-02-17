@@ -73,7 +73,7 @@ component | class | module | service | pipe | directive  <= Schematic
 
 Header Component
 ng generate component ui/header --skip-tests=true --flat (module name dont need because app has only one module by default 							it will assign that only
-ng g component ui/footer		(--flat will skip the creating the folder therefore footer folder is created)
+ng g component ui/footer		(--flat will skip creating the folder therefore footer folder is not created)
 
 CDN link --> Content Delivery Network (where url typically displayed)
 
@@ -181,7 +181,6 @@ Create Angular
 
 npm install -g @angular/cli
 
-
 ng new contat-app
 
 /*(change to present folder)
@@ -202,6 +201,9 @@ ng commands
 -- ng serve  (debug)
 -- ng test 	(runs all the spec file in app it should be executed before lint)
 
+npm remove -g @angular/cli
+npm clear cache --force
+
 
 
 
@@ -215,12 +217,12 @@ Component to add
 2. Service	-> Services	-> customer		--sT, --F
 3. Module	-> Admin	-> admin		--flat
 4. Component	-> Admin	-> customer-home, customer-list, customer-details, customer-create, customer-update									--sT, --F, --module=admin
-5. Module	-> Admin	-> admin-routing
+5. Module	-> Admin	-> admin-routing	
 
-6. Guard	-> Auth		-> Auth-Guard	- module=app
-7. Component	-> Auth		-> login, logout	- module=app
+6. Guard	-> Auth		-> Auth-Guard	-sT - module=app //postfixes .guard
+7. Component	-> Auth		-> login, logout -sT --f - module=app //postfixes .component
 8. Service	-> Auth		-> authentication
-9. Class 	-> Auth		-> login-model		--sT
+9. Class 	-> Auth		-> login-model		--sT  //flat not required and does postfix anything
 
 
 

@@ -1,0 +1,55 @@
+Vue.js (Javascript Frame Work)
+
+-Vue is created by Evan You ex-employee of Google in Feb-2014
+-It is a progressive javascript framework used for interactive web interface
+-The focus is on the viewpart(user Interface)
+-Makes use of virtual DOM, It will not affect any changes to the DOM instead it changes to the virtual DOM and compared 	with original code and later it makes changes to DOM
+-v-bind helps to bind the value or manipulation to the html
+-VueJS has built-in directives such as v-if, v-else, v-show, v-on, v-bind, and v-model, which are used to perform various 	actions on the frontend.
+
+
+
+Installation 
+npm install -g vue-generate-component
+
+Usage
+vgc --help
+
+Create New Component
+vgc footer  (will create 5 files)
+
+(footer.js
+footer.spec.js
+footer.html
+footer.scss
+index.vue
+)
+
+Create New Component Single file
+vgc -s home  (only one file)
+(a single file contains
+<template>
+<script>
+<style>
+)
+
+Create new component single file inside the folder
+vgc -s home --footer
+
+Create new directive
+vgc -d my-directive
+(generates 
+my-directive.directive.js
+)
+
+if you want use postfix in file name,use --postfix
+vgc footer --postfix page
+(generates files with postfix
+footer.page.js
+footer.page.css
+footer.page.html
+footer.page.spec.js
+)
+
+Change the default file types for html,style,script, and spec
+sudo vgc --html jade --style less --script ts --spec ts

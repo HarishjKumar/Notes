@@ -1,0 +1,17 @@
+https://www.c-sharpcorner.com/article/azure-storage-crud-operations-in-mvc-using-c-sharp-part-two/
+https://www.c-sharpcorner.com/article/azure-storage-crud-operations-in-mvc-using-c-sharp-azure-table-storage-part-one/
+https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet
+https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet#get-the-connection-string
+https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize?client_id=c44b4083-3bb0-49c1-b47d-974e53cbdf3c&response_mode=form_post&response_type=code+id_token&scope=https%3a%2f%2fmanagement.core.windows.net%2f%2fuser_impersonation+openid+email+profile&state=OpenIdConnect.AuthenticationProperties%3dp8sIq6l4qOc0dFxnBeflt7aKWEQPytMPblaWeaoC_DYVUjagJ2ButsyV5hcOkYJ1htIauv-HA8HND4pc-__qyscBidzotgBhH5ee_z2XjQ5mwfcQiacB_DV-HhE9Y6i7pG_cuMcBBhMkFFTE_hZUWMG0cmSKcuiSKj6rn1MllMNvZhRc4XZlOO7ADRQMyYJl0Tf8bxz80O8DfFqP2fB5BQBAVDpr7ba3pyuPnMQxq7o3v8QJuNKSmPbIXf6jITjs21N_YlM7MteVkrOy_UzWJ8_BbWK9KuC69aO4vGsmy9JOJJV6KE-PSYhKXb2_I6HBkkLmdjWFsGeC4EXKykM3O8QRR0SWbvizbiHt7HLiiWyC8anxgVDDQ5ms4jUbvASxGiq4tjUxL5_o6aCwbWtf-jKiTQlfUFa6iIRFBszeqnsStnz-9DKEWZdt2mtHMJ8U&nonce=637175423578983569.NDY1YzkwMmQtNDdhNi00YjUzLTkzODgtNmViZjIyMDMzYWVjNTY3Y2YyNWMtMWM1My00ZDljLWI1NzQtOTgyMzUwZjI3ZDNj&redirect_uri=https%3a%2f%2fportal.azure.com%2fsignin%2findex%2f%3ffeature.refreshtokenbinding%3dtrue%26feature.snivalidation%3dtrue%26feature.usemsallogin%3dtrue&site_id=501430&client-request-id=b5471d8e-4f57-4026-8c3f-75e113edc95e&x-client-SKU=ID_NET&x-client-ver=1.0.40306.1554&sso_nonce=AQABAAAAAABeAFzDwllzTYGDLh_qYbH8OzvAUSvNTWlvRxlcBZd2HIqEAa6-XGf5c7IgHmJ_g-Smy1cduZwlhPgvLW1CKV58MJfvb6yjfHPSX4Q0uVAeQyAA&mscrid=b5471d8e-4f57-4026-8c3f-75e113edc95e
+https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.1
+https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-3.1&tabs=visual-studio
+https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1
+https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-webapp#option-2-register-and-manually-configure-your-application-and-code-sample
+https://docs.microsoft.com/en-us/aspnet/core/fundamentals/choose-aspnet-framework?view=aspnetcore-3.1
+https://www.hackerrank.com/
+https://ib.devebmcatalyst.com/Login.aspx?RedirectToPage=%2fWizardSetup%2fWelcomeToSetup.aspx%3fContentItemID%3d92%26WizardSetupTaskID%3d1%26InstanceID%3d125&FailureCode=3
+https://tfs.devebmcatalyst.com/tfs/EBMCollection/EBMCatalyst/_workitems/edit/6516
+https://www.c-sharpcorner.com/blogs/how-to-import-excel-data-in-sql-server-using-asp-net2
+https://www.youtube.com/watch?v=MOZMw5_fBFA
+https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-webapp#option-2-register-and-manually-configure-your-application-and-code-sample
+https://bt.devebmcatalyst.com/Login.aspx?RedirectToPage=%2f&FailureCode=3

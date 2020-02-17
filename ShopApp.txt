@@ -1,0 +1,128 @@
+DataBase
+{
+Admin
+<
+ID
+Name
+Email
+Password
+CreatedDate
+Image
+>
+
+Customer
+<
+ID
+Name
+Number
+Email
+Password
+Country
+State
+City
+Image
+CreatedDate
+Active
+>
+
+Category
+<
+CategoryID(PK)
+CategoryName(Unique)
+CategoryImage
+>
+
+Product
+<
+CategoryID (FK)
+ID(PK)
+name(unique)
+units
+unitprice
+image
+>
+
+Order
+<
+OrderId(PK)
+ProductID(FK)
+CustomerID(FK)
+OrderDate
+OrderQuantity
+OrderPrice
+>
+
+Country
+CountryID(PK)
+CountryName(unique)
+>
+
+State
+<
+CountryID(FK)
+StateID(PK)
+StateName(unique)
+>
+
+City
+<
+StateID(FK)
+CityID(PK)
+CityName
+>
+
+}
+-------------------------------------------------Cleared--------------------------------------------------
+
+Projects
+
+1.DataAccess(Entities) (Class Library)
+	Model
+	*Customer Model
+	*Product Model
+	*CategoryModel
+	*OrderModel
+	*CountryStateCityModel
+-------------------------------------------------Cleared--------------------------------------------------
+
+2.DataAccessCommon(DatabaseHelpers) (Class Library)
+-------------------------------------------------Cleared--------------------------------------------------
+
+3.AdminMain (WebForms)
+	Folders
+	*Admin
+	*Common(scripts,Styles)
+	*MasterPage
+	*Images
+
+	WebForms
+	->Admin Login(webform)
+	->Home(link or button -> Products,Customers, Orders,category,Country)
+	->Products(buttons -> Add,update,delete,details)
+	->Customers(Details,Block(optional))
+	->Order(Details,accept&Decline(Optional))
+	->Country(Create,Delete,Update,Details)
+	* StateList 
+	* CityList
+	* AddCountry
+	->State(Create,Delete,Update,Details)
+	*AddState
+	*AddCity
+	->City(Create,Delete,Update,Details)
+	*AddCity
+	->Category(Create,Delete,Update,Details)
+	*AddProduct
+
+4.CustomerMain (WebForms)
+	Folders
+	*Common(scripts,Styles)
+	*MasterPage
+	*Images
+
+	WebForms
+	->Login(webform)
+	->Home(Products)
+	->Products(buttons -> details)
+	->Customers(create,update,delete,details)(Register)
+	->Order(Details,status(optional))
+
