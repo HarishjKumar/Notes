@@ -1,0 +1,14 @@
+Blob Storage : https://www.c-sharpcorner.com/article/azure-storage-crud-operations-in-mvc-using-c-sharp-part-two/
+Blob Storage : https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet
+Blob Storage : https://www.c-sharpcorner.com/article/azure-storage-crud-operations-in-mvc-using-c-sharp-azure-table-storage-part-one/
+Blob Storage : https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet#get-the-connection-string
+Azure AD Authentication : https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-webapp#option-2-register-and-manually-configure-your-application-and-code-sample
+Portal Login : https://portal.azure.com/
+Microsoft Login : https://login.microsoftonline.com/
+App Service : https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-windows-container
+Azure QuickStart : https://docs.microsoft.com/en-us/dotnet/azure/?view=azure-dotnet
+Azure GetStarted Page : https://docs.microsoft.com/en-us/azure/
+Identity Platform id-tokens : https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens#access-tokens
+Deploy Application : https://www.c-sharpcorner.com/article/how-to-deploy-web-app-to-azure-using-visual-studio/
+Azure OpenID Connect : https://docs.microsoft.com/en-us/azure/active-directory/azuread-dev/v1-protocols-openid-connect-code#send-a-sign-out-request
+Azure Web Api : https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-access-web-apis#add-redirect-uris-to-your-application
