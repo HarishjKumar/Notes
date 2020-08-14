@@ -15,3 +15,6 @@ https://www.c-sharpcorner.com/blogs/how-to-import-excel-data-in-sql-server-using
 https://www.youtube.com/watch?v=MOZMw5_fBFA
 https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-webapp#option-2-register-and-manually-configure-your-application-and-code-sample
 https://bt.devebmcatalyst.com/Login.aspx?RedirectToPage=%2f&FailureCode=3
+
+https://www.codemag.com/Article/1312041/Using-Active-Directory-in-.NET
+https://social.technet.microsoft.com/wiki/contents/articles/5392.active-directory-ldap-syntax-filters.aspx

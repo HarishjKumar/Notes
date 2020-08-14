@@ -1,0 +1,145 @@
+namespace LDAP.Controllers
+{
+    public class AuthenticateController : Controller
+    {
+        public object ViewModel { get; private set; }
+        // GET: Authenticate
+        public ActionResult Login1()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login1(string UserName, string Password)
+        {
+            string domainName = "Canarys.com";
+            try
+            {
+                DirectoryEntry de = new DirectoryEntry("LDAP://" + domainName, UserName, Password);
+                DirectorySearcher dsearch = new DirectorySearcher(de);
+                SearchResult results = null;
+                results = dsearch.FindOne();
+                ViewBag.result = "Valid Credentials...!";
+                Response.Redirect("/Authenticate/GetAllUsers");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.result = "Invalid Credentials...!";               
+            }
+                return View();
+        }
+        public ActionResult GetAllUsers()
+        {
+            List<UserModel> model = new List<UserModel>();
+            SearchResultCollection results;
+            DirectorySearcher ds = null;
+            DirectoryEntry de = new DirectoryEntry("LDAP://" + "Canarys.com");
+            ds = new DirectorySearcher(de);
+            ds.Filter = "(&(objectCategory=User)(objectClass=person))";
+            results = ds.FindAll();
+            foreach (SearchResult sr in results)
+            {
+                model.Add(
+                     new UserModel
+                     {
+                         Name = sr.Properties["name"][0].ToString(),
+                         //FirstName = sr.Properties["givenname"][0].ToString(),
+                         //LastName = sr.Properties["sn"][0].ToString()
+                     }
+                    );
+            }
+                return View(model);
+        }
+        public ActionResult GetUserDetails(string name)
+        {
+            List<string> list = new List<string>();
+            SearchResult results;
+            DirectorySearcher ds = null;
+            DirectoryEntry de = new DirectoryEntry("LDAP://" + "Canarys.com");
+            ds = new DirectorySearcher(de);
+            ds.PropertiesToLoad.Add("name");
+            ds.PropertiesToLoad.Add("mail");
+            ds.PropertiesToLoad.Add("givenname");
+            ds.PropertiesToLoad.Add("sn");
+            ds.Filter = "(&(objectCategory=User)(objectClass=person)(name="+name+"))";
+            results = ds.FindOne();
+           
+                if (results.Properties["name"].Count > 0)
+                    list.Add(results.Properties["name"][0].ToString());
+                if (results.Properties["mail"].Count > 0)
+                    list.Add(results.Properties["mail"][0].ToString());
+                if (results.Properties["FirstName"].Count > 0)
+                    list.Add(results.Properties["FirstName"][0].ToString());
+                if (results.Properties["LastName"].Count > 0)
+                    list.Add(results.Properties["LastName"][0].ToString());
+           
+            ViewBag.user = list;
+            return View(list);
+        }
+        public ActionResult GetAllGroups()
+        {
+            object obj = new object();
+            List<string> list = new List<string>();
+            SearchResultCollection results;
+            DirectorySearcher ds = null;
+            DirectoryEntry de = new DirectoryEntry("LDAP://" + "Canarys.com");
+            ds = new DirectorySearcher(de);
+            ds.Sort = new SortOption("name", SortDirection.Ascending);
+            ds.PropertiesToLoad.Add("name");
+            ds.PropertiesToLoad.Add("memberof");
+            ds.PropertiesToLoad.Add("member");
+            ds.Filter = "(&(objectCategory=Group))";
+            results = ds.FindAll();
+            foreach (SearchResult sr in results)
+            {
+                if (sr.Properties["name"].Count > 0)
+                {
+                    Debug.WriteLine("name");
+                    foreach (string item in sr.Properties["name"])
+                    {
+                        list.Add(" " + item);
+                    }
+                }
+                //list.Add(sr.Properties["name"][0].ToString());
+                if (sr.Properties["memberof"].Count > 0)
+                {
+                    Debug.WriteLine(" Memberss of");
+                    foreach (string item in sr.Properties["memberof"])
+                    {
+                        list.Add(" " + item);
+                    }
+                }
+                if (sr.Properties["member"].Count > 0)
+                {
+                    list.Add(" Member");
+                    foreach (string item in sr.Properties["member"])
+                    {
+                        list.Add(" " + item);
+                    }
+                }
+            }
+            ViewBag.users = list;
+            ViewData["Message"] = obj;
+            return View();
+        }
+        public ActionResult GetAUser(string userName)
+        {
+            DirectorySearcher ds = null;
+            DirectoryEntry de = new DirectoryEntry("LDAP://" + "Canarys.com");
+            SearchResult sr;
+            //ds = BuildUserSearch()de;
+            //ds.Filter = "(&(objectCategory=User)(objectClass=person))";
+            ds.Filter = "(&(objectCategory=User)(objectClass=person)(name = " + userName + "))";
+            sr = ds.FindOne();
+            if (sr != null)
+            {
+                Debug.WriteLine("name");
+                Debug.WriteLine("mail");
+                Debug.WriteLine("givenname");
+                Debug.WriteLine("sn");
+                Debug.WriteLine("userPrincipalName");
+                Debug.WriteLine("distinguishedName");
+            }
+            return View();
+        }
+    }
+}

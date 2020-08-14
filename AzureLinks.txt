@@ -12,3 +12,16 @@ Identity Platform id-tokens : https://docs.microsoft.com/en-us/azure/active-dire
 Deploy Application : https://www.c-sharpcorner.com/article/how-to-deploy-web-app-to-azure-using-visual-studio/
 Azure OpenID Connect : https://docs.microsoft.com/en-us/azure/active-directory/azuread-dev/v1-protocols-openid-connect-code#send-a-sign-out-request
 Azure Web Api : https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-access-web-apis#add-redirect-uris-to-your-application
+Azure Functions
+{
+Resource Group : https://docs.microsoft.com/en-us/learn/modules/control-and-organize-with-azure-resource-manager/1-introduction
+App Service : https://docs.microsoft.com/en-us/learn/modules/host-a-web-app-with-azure-app-service/?WT.mc_id=azureportalcard_Service_App%20Services_-inproduct-azureportal
+Containerized App service : https://docs.microsoft.com/en-us/learn/modules/deploy-run-container-app-service/?WT.mc_id=azureportalcard_Service_App%20Services_-inproduct-azureportal
+App service Scale : https://docs.microsoft.com/en-us/learn/modules/app-service-scale-up-scale-out/?WT.mc_id=azureportalcard_Service_App%20Services_-inproduct-azureportal
+sql database : https://docs.microsoft.com/en-us/learn/modules/provision-azure-sql-db/?WT.mc_id=azureportalcard_Service_SQL%20databases_-inproduct-azureportal
+secure sql database : https://docs.microsoft.com/en-us/learn/modules/secure-your-azure-sql-database/?WT.mc_id=azureportalcard_Service_SQL%20databases_-inproduct-azureportal
+SQL Databases with SQL elastic pools : https://docs.microsoft.com/en-us/learn/modules/scale-sql-databases-elastic-pools/?WT.mc_id=azureportalcard_Service_SQL%20databases_-inproduct-azureportal
+virtual machines : https://docs.microsoft.com/en-us/learn/modules/intro-to-azure-virtual-machines/?WT.mc_id=azureportalcard_Service_Virtual%20Machines_-inproduct-azureportal
+Windows virtual machine : https://docs.microsoft.com/en-us/learn/modules/create-windows-virtual-machine-in-azure/?WT.mc_id=azureportalcard_Service_Virtual%20Machines_-inproduct-azureportal
+
+}

@@ -1,0 +1,25 @@
+Declare @S varchar(max) = '123456,2345678,123567,2345890'
+
+Declare @Zap varchar(50)='2345890'
+
+Select reverse(stuff(reverse(stuff(replace(','+@S+',',','+@Zap+',',','),1,1,'')),1,1,''))
+--select FIND_IN_SET(@Zap,@S) as Result
+--select CONCAT(',',@S,',') LIKE CONCAT('%,',@Zap,',%') as Result
+Select @Zap
+WHERE ','+@S+',' like '%,'+cast (@Zap as varchar(MAX))+',%'
+
+--,(
+--       select ','+EE.EmpName
+--       from dbo.tbl_Employee as EE
+--       where ','+Emp.ReportingManagerID+',' like '%,'+cast (EE.EmpID as varchar(MAX))+',%'
+--       for xml path(''), type
+--       ).value('substring(text()[1], 2)', 'varchar(max)') as ReportingManagerName
+
+
+update tbl_Employee set DesignationID = 5 where EmpID=118
+update tbl_Employee set DesignationID = 4 where EmpID=119
+
+select * from tbl_Department
+select * from tbl_Designation
+select * from tbl_Employee
+

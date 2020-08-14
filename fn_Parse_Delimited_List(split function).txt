@@ -1,0 +1,40 @@
+USE [TrainingManagement]
+GO
+/****** Object:  UserDefinedFunction [dbo].[fn_Parse_Delimited_List]    Script Date: 14-08-2020 17:01:01 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER FUNCTION [dbo].[fn_Parse_Delimited_List] (
+    @string NVARCHAR(MAX)
+    ,@separator NVARCHAR(20)
+    )
+RETURNS @parsedString TABLE (
+    iid INT identity(1, 1) NOT NULL
+    ,listitem NVARCHAR(MAX)
+    )
+AS
+BEGIN
+    DECLARE @position INT
+
+ 
+
+    SET @position = 1
+    SET @string = @string + @separator
+
+ 
+
+    WHILE charindex(@separator, @string, @position) <> 0
+    BEGIN
+        INSERT INTO @parsedString
+        SELECT substring(@string, @position, charindex(@separator, @string, @position) - @position)
+
+ 
+
+        SET @position = charindex(@separator, @string, @position) + len(@Separator)
+    END
+
+ 
+
+    RETURN
+END

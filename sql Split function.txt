@@ -1,0 +1,17 @@
+CREATE FUNCTION split_string
+(
+    @in_string VARCHAR(MAX),
+    @delimeter VARCHAR(1)
+)
+RETURNS @list TABLE(tuple VARCHAR(100))
+AS
+BEGIN
+        WHILE LEN(@in_string) > 0
+        BEGIN
+            INSERT INTO @list(tuple)
+            SELECT left(@in_string, charindex(@delimiter, @in_string+',') -1) as tuple
+    
+            SET @in_string = stuff(@in_string, 1, charindex(@delimiter, @in_string + @delimiter), '')
+        end
+    RETURN 
+END

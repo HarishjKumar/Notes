@@ -1,0 +1,3 @@
+$('p:contains("is")').each(function(){
+    $(this).html($(this).html().split("is").join(""));
+});

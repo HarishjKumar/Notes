@@ -1,0 +1,5 @@
+https://www.concretepage.com/angular-2/angular-2-4-required-validation-example
+
+https://www.concretepage.com/angular-2/angular-2-4-pattern-validation-example
+
+https://angular.io/guide/form-validation

@@ -177,7 +177,9 @@ Additional Componets: HeaderComponent, FooterComponent.
 
 
 Create Angular
+to disable version warning  =  To disable this warning use "ng config -g cli.warnings.versionMismatch false".
 
+ng --version (to check angular cli is installed or not)
 
 npm install -g @angular/cli
 

@@ -1,0 +1,158 @@
+ngOnInit() {
+    let policyNo = this.activeRoute.snapshot.params.id;
+    this.model = new Form1('','','','','','','','','','','','','','','','','');
+    this.fg = this.fb.group({
+      PolicyNo : new FormControl(this.model.policyNo),
+      PreviousPolicyNo : new FormControl(this.model.previousPolicyNo,[Validators.required]),
+      PolicySubType : new FormControl(this.model.policySubType,[Validators.required,Validators.pattern("^[a-zA-z]+\s?[a-zA-z]*$")]),
+      Department : new FormControl(this.model.department,[Validators.required,Validators.pattern("^[a-zA-z]+\s?[a-zA-z]*$")]),
+      Company: new FormControl(this.model.company,[Validators.required]),
+      PolicyHolderName : new FormControl(this.model.policyHolderName,[Validators.required,Validators.pattern("^([a-zA-Z0-9.-]+)@([a-zA-Z-]+)((.([a-zA-Z]){2,3})+)$")]),
+      GroupCompany : new FormControl(this.model.groupCompany,[Validators.required,Validators.pattern("[0-9]{10}")]),
+      AllowedRelation : new FormControl(this.model.allowedRelation,[Validators.required,Validators.pattern("^[a-zA-z]+\s?[a-zA-z]*$")]),      
+      OfficeCode : new FormControl(this.model.officeCode),
+      ContactPerson : new FormControl(this.model.contactPerson,[Validators.required]),
+      CompanyAddress1 : new FormControl(this.model.companyAddress1,[Validators.required,Validators.pattern("^[a-zA-z]+\s?[a-zA-z]*$")]),
+      CompanyAddress2 : new FormControl(this.model.companyAddress2,[Validators.required,Validators.pattern("^[a-zA-z]+\s?[a-zA-z]*$")]),
+      State: new FormControl(this.model.state,[Validators.required]),
+      City : new FormControl(this.model.city,[Validators.required,Validators.pattern("^([a-zA-Z0-9.-]+)@([a-zA-Z-]+)((.([a-zA-Z]){2,3})+)$")]),
+      Pin : new FormControl(this.model.pin,[Validators.required,Validators.pattern("[0-9]{10}")]),
+      Phone : new FormControl(this.model.phone,[Validators.required,Validators.pattern("^[a-zA-z]+\s?[a-zA-z]*$")]),   
+      EmailID : new FormControl(this.model.emailID,[Validators.required,Validators.pattern("^[a-zA-z]+\s?[a-zA-z]*$")]),   
+    });
+    this.service.getDetails1(policyNo).subscribe
+      (
+        data=>this.model=data[0]
+      );
+      
+      this.fg.patchValue({
+        
+        PolicyNo :this.model.PolicyNo,
+        PreviousPolicyNo : this.model.PreviousPolicyNo,
+        PolicySubType : this.model.PolicySubType,
+        Department : this.model.Department,
+        Company : this.model.Company,
+        PolicyHolderName :this.model.PolicyHolderName,
+        GroupCompany : this.model.GroupCompany,
+        AllowedRelation : this.model.AllowedRelation,   
+        OfficeCode : this.model.OfficeCode,
+        ContactPerson : this.model.ContactPerson,
+        CompanyAddress1 : this.model.CompanyAddress1,
+        CompanyAddress2 : this.model.CompanyAddress2,
+        State : this.model.State,
+        City :this.model.City,
+        Pin : this.model.Pin,
+        Phone : this.model.Phone,   
+        EmailID : this.model.EmailID
+      })
+    }
+  submitted=false;
+  get f() {return this.fg.controls;}
+  submit(){
+    this.submitted=true;
+
+    if (this.fg.invalid)
+    return false;
+    
+    this.service.create1(this.model).subscribe(()=>{
+      this.router.navigate(['/GroupPolicyForm2/'+this.model.PolicyNo]);
+    });
+  }
+  
+  -----------------------------------------------------------------------------------------------------------
+ <button type="button" class="bttn" [routerLink]="['/GroupPolicyForm1']" style="background-color: green;color: white;" >Step 1</button>
+
+<button type="button" class="bttn" [routerLink]="['/GroupPolicyForm2']">Step 2</button>
+
+<button type="button" class="bttn" [routerLink]="['/GroupPolicyForm3']" >Step 3</button>
+
+<button type="button" class="bttn" [routerLink]="['/GroupPolicyForm4']">Step 4</button>
+<form [formGroup]="fg" class="mt-5 mb-5 pb-5">
+    <div>
+        <div class="form-row">
+            <label class="col-5 offset-1">Policy No
+                <input type="text" name="PolicyNo" [(ngModel)]="model.policyNo" class="form-control" formControlName="policyNo" [ngClass]="{'is-invalid': submitted && f.policyNo.errors}" />
+                <div *ngIf="submitted && f.policyNo.errors" class="invalid-feedback">
+                    <div *ngIf="f.policyNo.errors.required">policy Number is required</div>
+                    <div *ngIf="f.policyNo.errors.pattern">Invalid policyNo</div>
+                </div>
+            </label>
+            <label class="col-5">Previous Policy No
+                <input type="text" name="PrevPolicyNo" [(ngModel)]="model.previousPolicyNo" class="form-control" formControlName="previousPolicyNo" [ngClass]="{'is-invalid': submitted && f.previousPolicyNo.errors}" />
+                <div *ngIf="submitted && f.previousPolicyNo.errors" class="invalid-feedback">
+                    <div *ngIf="f.previousPolicyNo.errors.required">policy Number is required</div>
+                    <div *ngIf="f.previousPolicyNo.errors.pattern">Invalid policyNo</div>
+                </div>
+            </label>
+        </div>
+        <div class="form-row">
+            <label class="col-5">Policy Sub Type
+                <input type="text" name="Policy Sub Type" [(ngModel)]="model.policySubType" class="form-control" formControlName="policySubType" [ngClass]="{'is-invalid': submitted && f.policySubType.errors}" />
+                <div *ngIf="submitted && f.policySubType.errors" class="invalid-feedback">
+                    <div *ngIf="f.policySubType.errors.required">policy Number is required</div>
+                    <div *ngIf="f.policySubType.errors.pattern">Invalid policyNo</div>
+                </div>
+            </label>
+            <label class="col-5">Department
+                <input type="text" name="Department" [(ngModel)]="model.department" class="form-control" formControlName="department" [ngClass]="{'is-invalid': submitted && f.department.errors}" />
+                <div *ngIf="submitted && f.department.errors" class="invalid-feedback">
+                    <div *ngIf="f.department.errors.required">policy Number is required</div>
+                    <div *ngIf="f.department.errors.pattern">Invalid policyNo</div>
+                </div>
+            </label>
+        </div>
+        <div class="form-row">
+            <label class="col-5">Company
+                <input type="text" name="Company" [(ngModel)]="model.company" class="form-control" formControlName="company" />
+            </label>
+            <label class="col-5">Policy Holder Name
+                <input type="text" name="Policy Holder Name" [(ngModel)]="model.policyHolderName" formControlName="policyHolderName" class="form-control" />
+            </label>
+        </div>
+        <div class="form-row">
+            <label class="col-5">Group Company
+                <input type="text" name="Group Company" [(ngModel)]="model.groupCompany" class="form-control" formControlName="groupCompany" />
+            </label>
+            <label class="col-5">Allowed Relation
+                <input type="text" name="Allowed Relation" [(ngModel)]="model.allowedRelation" class="form-control" formControlName="allowedRelation"  />
+            </label>
+        </div>
+        <div class="form-row">
+            <label class="col-5">Contact Person
+                <input type="text" name="Contact Person" [(ngModel)]="model.contactPerson" class="form-control" formControlName="contactPerson" />
+            </label>
+            <label class="col-5">Address 1
+                <input type="text" name="Address 1" [(ngModel)]="model.companyAddress1" class="form-control" formControlName="companyAddress1" />
+            </label>
+        </div>
+        <div class="form-row">
+            <label class="col-5">Address 2
+                <input type="text" name="Address 2" [(ngModel)]="model.companyAddress2" class="form-control" formControlName="companyAddress2" />
+            </label>
+            <label class="col-5 offset-1">State
+                <input type="text" name="State" [(ngModel)]="model.state" class="form-control" formControlName="state" />
+            </label>
+        </div>
+        <div class="form-row">
+            <label class="col-5 offset-1">City
+                <input type="text" name="City" [(ngModel)]="model.city" class="form-control" formControlName="city" />
+            </label>
+            <label class="col-5 offset-1">Pin
+                <input type="text" name="Pin" [(ngModel)]="model.pin" class="form-control" formControlName="pin" />
+            </label>
+        </div>
+        <div class="form-row">
+            <label class="col-5 offset-1">Phone
+                <input type="text" name="Phone" [(ngModel)]="model.phone" class="form-control" formControlName="phone" />
+            </label>
+
+            <label class="col-5 offset-1">Email
+                <input type="text" name="Email" [(ngModel)]="model.emailID" class="form-control" formControlName="emailID" />
+            </label>
+        </div>
+        <div style="text-align: center;">
+            <input type="button" class="btn btn-primary"
+                style="padding-left: 100px; padding-right: 100px; background-color:darkslategray;" (click)="submit()" value="Next" />
+        </div>
+    </div>
+</form>

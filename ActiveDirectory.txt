@@ -1,0 +1,44 @@
+Active Directory(AD)
+
+DC -> Domain Controller
+OU -> Organizational Units
+
+
+LDAP is tool for retriving data
+
+LDAP -> LightWeight Directory Access Protocol
+givenname -> firstname
+sn -> lastname
+mail -> mail
+login name -> userPrincipalName
+
+
+object type = computer
+object name = servername (ex: chaitra)
+user login = user name (ex: harishk)
+
+
+AD -> it is a database-base system that provides authentication , directory,policy and other services in microsoft windows environment
+LDAP -> LDAP is standard language used to query any kind of directory services
+
+
+
+Harish kumar
+
+name -> Harish Kumar
+givenname -> Harish
+samaccountname -> harishk
+cn -> Harish Kumar
+displayname -> Harish kumar
+samaccountype -> 805306368
+logonaccount -> 782
+primarygroupid -> 513
+objectcategory -> CN=person, CN=schema, CN=Configuration, DC=canarys, DC=com
+userprincipalname -> harishk@canarys.com
+useracountcontrol -> 512
+distinguishedname -> CN=Harish Kumar, CN=User,Dc=canarys,DC=com
+objectclass -> top,person,organizationalPerson,User
+memberof -> CN=Cyberoam_ADM, CN=User
+adspath -> LDAP://CN=Harish Kumar,CN=Users,DC=canarys,DC=com
+instancetype -> 4
+sn -> Kumar

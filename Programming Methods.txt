@@ -1,0 +1,54 @@
+BULK UPDATE METHODS
+
+
+(1) (Cannot update more values) 
+SqlConnection sqlConn = new SqlConnection(connectionString);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM tbl_User", sqlConn);
+            using (new SqlCommandBuilder(adapter))
+            {
+                try
+                {
+                   d1 = DateTime.Now;
+                   adapter.Fill(dtBulkUpdate);
+                   sqlConn.Open();
+                   adapter.Update(dtBulkUpdate);
+                    sqlConn.Close();
+                   d2 = DateTime.Now;
+                }
+                catch (Exception es)
+                {
+                    Console.WriteLine(es);
+                }
+            }
+			
+	(2)		Create Temp table, insert to that , update using temp table
+	con.Open();
+                d1 = DateTime.Now;
+                com.CommandText = "sp_TempTable";
+                com.CommandType = CommandType.StoredProcedure;
+                com.ExecuteNonQuery();
+
+                using (SqlBulkCopy bc = new SqlBulkCopy(con))
+                {
+                    bc.BulkCopyTimeout = 300;
+                    bc.DestinationTableName = "TmpTable";
+                    bc.WriteToServer(dtBulkUpdate);
+                }
+                com.CommandText = "sp_UpdateTable";
+                com.CommandType = CommandType.StoredProcedure;
+                com.CommandTimeout = 600;
+                com.ExecuteNonQuery();
+
+                d2 = DateTime.Now;
+                con.Close();
+				
+	(3) 	Pass datatable to sp and update	
+	   
+                   d1 = DateTime.Now;
+                   com.CommandText = "sp_TempTableDT";
+                  com.CommandType = CommandType.StoredProcedure;
+                   com.Parameters.AddWithValue("@TempTable", dtBulkUpdate);
+                   com.CommandTimeout = 600;
+                   com.ExecuteNonQuery();
+
+===================================================================================================

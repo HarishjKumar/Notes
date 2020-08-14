@@ -1,0 +1,32 @@
+USE [TrainingManagement]
+GO
+/****** Object:  StoredProcedure [dbo].[Utility_grep]    Script Date: 14-08-2020 16:59:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Bhanuprakash
+-- Create date: 02-05-2020
+-- Description:	Helper library to find things in the DB
+-- Revisions:
+-- =============================================
+ALTER PROC [dbo].[Utility_grep] @SearchText NVARCHAR(500)
+AS
+BEGIN
+	SELECT DISTINCT object_name(c.id) NAME
+		,type
+	FROM syscomments C
+	JOIN sysobjects o ON C.id = o.id
+	WHERE TEXT LIKE '%' + @SearchText + '%'
+	
+	UNION ALL
+	
+	SELECT t.Name AS NAME
+		,'T' AS [type]
+	FROM sys.columns c
+	JOIN sys.tables t ON c.object_id = t.object_id
+	WHERE c.Name LIKE '%' + @SearchText + '%'
+	ORDER BY [type]
+		,NAME
+END
